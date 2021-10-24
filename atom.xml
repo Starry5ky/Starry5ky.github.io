@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Augu5t&#39;s Blog</title>
+  
+  <subtitle>Augu5t的博客</subtitle>
+  <link href="https://github.com/Starry5ky/starry5ky.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://github.com/Starry5ky/starry5ky.github.io/"/>
+  <updated>2021-10-24T04:29:30.053Z</updated>
+  <id>https://github.com/Starry5ky/starry5ky.github.io/</id>
+  
+  <author>
+    <name>Augu5t</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CTF小知识</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/23/ctf-xiao-zhi-shi/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/23/ctf-xiao-zhi-shi/</id>
+    <published>2021-10-23T08:57:03.000Z</published>
+    <updated>2021-10-24T04:29:30.053Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;#各类型文件头&lt;/p&gt;
+&lt;p&gt;##音频文件&lt;br&gt;&lt;em&gt;Wave (wav)&lt;/em&gt; : WAVE 57415645&lt;/p&gt;
+&lt;p&gt;##压缩文件&lt;br&gt;&lt;em&gt;ZIP Archive (zip)&lt;/em&gt; : 文件头-&amp;gt;&lt;code&gt;pk 504b</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CTF" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/CTF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>静态源代码扫描之Sonarqube</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/21/jing-tai-yuan-dai-ma-sao-miao-zhi-sonarqube/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/21/jing-tai-yuan-dai-ma-sao-miao-zhi-sonarqube/</id>
+    <published>2021-10-20T16:00:00.000Z</published>
+    <updated>2021-10-22T03:17:38.650Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;#SonarQube&lt;br&gt;&lt;a href=&quot;https://docs.sonarqube.org/latest/&quot;&gt;SonarQube&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="DevSecOps" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/DevSecOps/"/>
+    
+    <category term="代码审计" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+    
+    <category term="工具搭建" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/%E5%B7%A5%E5%85%B7%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>冀信2021网络安全竞赛-廊坊分赛</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/18/ji-xin-2021-wang-luo-an-quan-jing-sai-lang-fang-fen-sai/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/18/ji-xin-2021-wang-luo-an-quan-jing-sai-lang-fang-fen-sai/</id>
+    <published>2021-10-18T07:07:10.000Z</published>
+    <updated>2021-10-19T06:02:16.226Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;#BabyMd5&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2021中国能源网络安全大赛WP集合</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/16/2021-zhong-guo-neng-yuan-wang-luo-an-quan-da-sai-wp-ji-he/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/16/2021-zhong-guo-neng-yuan-wang-luo-an-quan-da-sai-wp-ji-he/</id>
+    <published>2021-10-16T04:17:40.000Z</published>
+    <updated>2021-10-24T07:33:23.161Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;#MISC&lt;br&gt;##misc-hardwire&lt;br&gt;流量分析题，打开压缩包，搜索http，协议最后一个协议包发现有rar文件头部&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2021%E8%83%BD%E6%BA%90CTF/img.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CTF" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/CTF/"/>
+    
+    <category term="WP" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/WP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GDB使用总结</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/11/gdb-shi-yong-zong-jie/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/11/gdb-shi-yong-zong-jie/</id>
+    <published>2021-10-10T16:00:00.000Z</published>
+    <updated>2021-10-11T06:12:12.216Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;GDB: The GNU Project Debugger：&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="C/C++" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/C-C/"/>
+    
+    <category term="GDB" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/GDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>攻防世界--PWN新手区</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/09/gong-fang-shi-jie-pwn-xin-shou-qu/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/09/gong-fang-shi-jie-pwn-xin-shou-qu/</id>
+    <published>2021-10-08T16:00:00.000Z</published>
+    <updated>2021-10-11T09:37:47.803Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;#前置知识学习&lt;/p&gt;
+&lt;p&gt;##RELRO&lt;/p&gt;
+&lt;p&gt;GCC, GNU linker 以及 Glibc-dynamic linker 一起配合实现了一种叫做 relro 的技术: read only relocation。大概实现就是由 linker 指定</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CTF" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/CTF/"/>
+    
+    <category term="PWN" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/PWN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RSA之加密解密原理</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/09/17/rsa-zhi-jia-mi-jie-mi-yuan-li/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/09/17/rsa-zhi-jia-mi-jie-mi-yuan-li/</id>
+    <published>2021-09-16T16:00:00.000Z</published>
+    <updated>2021-09-22T09:28:10.874Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1977年，三位数学家Rivest、Shamir 和 Adleman 设计了一种算法，可以实现&lt;strong&gt;非对称加密&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这种算法用他们三个人的名字命名，叫做RSA算法。从那时直到现在，RSA算法一直是最广为使用的</summary>
+        
+      
+    
+    
+    
+    <category term="CTF" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/CTF/"/>
+    
+    
+    <category term="CTF" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/CTF/"/>
+    
+    <category term="密码学" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MICROSOFT MSHTML远程代码执行漏洞（CVE-2021-40444）</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/09/13/mshtml-yuan-cheng-dai-ma-zhi-xing-lou-dong-cve-2021-40444/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/09/13/mshtml-yuan-cheng-dai-ma-zhi-xing-lou-dong-cve-2021-40444/</id>
+    <published>2021-09-12T16:00:00.000Z</published>
+    <updated>2021-10-09T10:03:25.064Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;CVE-2021-40444-漏洞简介&quot;&gt;&lt;a href=&quot;#CVE-2021-40444-漏洞简介&quot; class=&quot;headerlink&quot; title=&quot;CVE-2021-40444 漏洞简介&quot;&gt;&lt;/a&gt;CVE-2021-40444</summary>
+        
+      
+    
+    
+    
+    
+    <category term="漏洞复现" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1195777-chrome0day结合MSF</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/04/15/1195777-chrome0day-jie-he-msf/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/04/15/1195777-chrome0day-jie-he-msf/</id>
+    <published>2021-04-15T09:13:29.000Z</published>
+    <updated>2021-04-15T10:07:11.467Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;No1：Chrome-V8引擎远程代码执行0day&quot;&gt;&lt;a href=&quot;#No1：Chrome-V8引擎远程代码执行0day&quot; class=&quot;headerlink&quot; title=&quot;No1：Chrome V8引擎远程代码执行0day&quot;&gt;&lt;/a&gt;No1：Chrome</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞复现" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+    <category term="Chrome" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/Chrome/"/>
+    
+    <category term="RCE" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/RCE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>weblogic未授权命令执行反弹shell</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2020/11/09/weblogic-wei-shou-quan-ming-ling-zhi-xing-fan-dan-shell/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2020/11/09/weblogic-wei-shou-quan-ming-ling-zhi-xing-fan-dan-shell/</id>
+    <published>2020-11-09T01:35:31.000Z</published>
+    <updated>2020-11-09T07:38:55.008Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;hr&gt;
+&lt;h1 id=&quot;0x01-漏洞详情&quot;&gt;&lt;a href=&quot;#0x01-漏洞详情&quot; class=&quot;headerlink&quot; title=&quot;0x01:漏洞详情&quot;&gt;&lt;/a&gt;0x01:漏洞详情&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;No.1: CVE-2020-14883:</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞复现" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+    <category term="weblogic" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/weblogic/"/>
+    
+    <category term="CVE-2020-14882，CVE-2020-14883" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/CVE-2020-14882%EF%BC%8CCVE-2020-14883/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tools-Online</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2020/10/09/tools-online/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2020/10/09/tools-online/</id>
+    <published>2020-10-09T07:49:48.000Z</published>
+    <updated>2020-10-09T07:52:52.494Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;hr&gt;
+&lt;h2 id=&quot;在线自服务与工具&quot;&gt;&lt;a href=&quot;#在线自服务与工具&quot; class=&quot;headerlink&quot; title=&quot;在线自服务与工具&quot;&gt;&lt;/a&gt;&lt;strong&gt;在线自服务与工具&lt;/strong&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="tools" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/tools/"/>
+    
+    
+    <category term="TOOLS" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/TOOLS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>红蓝资料集锦</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2020/10/09/hong-lan-zi-liao-ji-jin/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2020/10/09/hong-lan-zi-liao-ji-jin/</id>
+    <published>2020-10-09T05:41:31.000Z</published>
+    <updated>2020-10-09T07:45:14.867Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目简介&quot;&gt;&lt;a href=&quot;#项目简介&quot; class=&quot;headerlink&quot; title=&quot;项目简介&quot;&gt;&lt;/a&gt;项目简介&lt;/h1&gt;&lt;p&gt;一个 Red Team</summary>
+        
+      
+    
+    
+    
+    <category term="attack" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/attack/"/>
+    
+    
+    <category term="红蓝" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/%E7%BA%A2%E8%93%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C2隐匿之域前置</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2020/09/22/c2-yin-ni-zhi-yu-qian-zhi/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2020/09/22/c2-yin-ni-zhi-yu-qian-zhi/</id>
+    <published>2020-09-22T02:03:46.000Z</published>
+    <updated>2021-09-13T07:30:32.924Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Domain-Fronting&quot;&gt;&lt;a href=&quot;#Domain-Fronting&quot; class=&quot;headerlink&quot; title=&quot;Domain Fronting&quot;&gt;&lt;/a&gt;Domain Fronting&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="attack" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/attack/"/>
+    
+    
+    <category term="C2" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/C2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>密码保护文件</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2020/09/22/mi-ma-bao-hu-wen-jian/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2020/09/22/mi-ma-bao-hu-wen-jian/</id>
+    <published>2020-09-22T01:51:03.000Z</published>
+    <updated>2020-11-09T10:06:51.512Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;root&lt;br&gt;root&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/Markdown/"/>
+    
+    
+    <category term="test" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FirstBlog</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2020/09/22/firstblog/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2020/09/22/firstblog/</id>
+    <published>2020-09-22T01:49:20.000Z</published>
+    <updated>2020-09-22T06:29:18.076Z</updated>
+    
+    
+    
+    
+    <category term="Markdown" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/Markdown/"/>
+    
+    
+    <category term="test" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/test/"/>
+    
+  </entry>
+  
+</feed>

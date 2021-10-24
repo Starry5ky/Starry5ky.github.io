@@ -1,0 +1,2316 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="GDB使用总结, Augu5t&#39;s Blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>GDB使用总结 | Augu5t&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Augu5t's Blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    <div>
+                        
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/logo.png" class="logo-img" alt="LOGO">
+                        
+                        <span class="logo-span">Augu5t's Blog</span>
+                    </div>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Augu5t&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Starry5ky" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Starry5ky" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('rock it by md5!')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">GDB使用总结</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C-C/">
+                                <span class="chip bg-color">C/C++</span>
+                            </a>
+                        
+                            <a href="/tags/GDB/">
+                                <span class="chip bg-color">GDB</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-11
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    15.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    61 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>GDB: The GNU Project Debugger：<a target="_blank" rel="noopener" href="http://www.gnu.org/software/gdb/documentation/">http://www.gnu.org/software/gdb/documentation/</a></p>
+<p>参考：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/30ffc01380a0">http://www.jianshu.com/p/30ffc01380a0</a></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/">https://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/</a></p>
+<p>参考：<a target="_blank" rel="noopener" href="http://wiki.ubuntu.org.cn/%E7%94%A8GDB%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F">http://wiki.ubuntu.org.cn/%E7%94%A8GDB%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F</a></p>
+<p>参考：<a target="_blank" rel="noopener" href="http://blog.csdn.net/21cnbao/article/details/7385161">http://blog.csdn.net/21cnbao/article/details/7385161</a></p>
+<p>GDB 常用调试命令以及多进程多线程调试：<a target="_blank" rel="noopener" href="https://blog.csdn.net/freeelinux/article/details/53700266">https://blog.csdn.net/freeelinux/article/details/53700266</a></p>
+<p>Linux 下 GDB 用法基础教程详解：<a target="_blank" rel="noopener" href="http://blog.csdn.net/cc198877/article/details/7767312">http://blog.csdn.net/cc198877/article/details/7767312</a></p>
+<p>100 个 gdb 技巧：<a href="https://github.com/hellogcc/100-gdb-tips/blob/master/src/index.md">https://github.com/hellogcc/100-gdb-tips/blob/master/src/index.md</a></p>
+<p>Hyperpwn：基于 gdb 的调试利器，让你的调试过程更轻松：<a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-257344.htm">https://bbs.pediy.com/thread-257344.htm</a></p>
+<pre><code>编译时必须添加  -g 才能利用 GDB进行调试，如：gcc -g test.c -o test  这样编译生成的可执行文件才可以利用gdb进行源码调试。
+
+-g 是在可执行文件中加入源代码的信息，比如可执行文件中第几条机器指令对应源代码的第几行，但并不是把整个源文件嵌入到可执行文件中，
+所以调试时必须保证 gdb 能找到源文件。如果把当前的 gdb.c 改名为 g.c 或者将 gdb.c 移动到其他地方，则 gdb 无法进行调试。
+
+-g
+Produce debugging information in the operating system’s native format.GDB can work with this debugging information.
+产生debug信息是操作系统默认格式。GDB可以使用这种格式。
+
+-ggdb
+Produce debugging information for use by GDB.
+产生debug信息给GDB使用的。
+
+-g3
+Request debugging information and also use level to specify how much information.The default level is 2.Level 0 produces no debug information at all.Thus -g0 negates -g.
+Level 3 includes extra information,such as all the macro definitions present in the program.Some debuggers support macro expansion when you use -g3.
+Level 1 produces minimal information,enough for making backtraces in parts of the program that you don’t plan to debug.This includes descriptions of functions and external variables,and line number tables,but no information about local variables.
+-g3 的 3表示级别，默认级别是2，级别0没有debug信息，级别3可以调试宏。
+
+-gstabs          此选项以stabs格式声称调试信息，但是不包括gdb调试信息。
+
+-gstabs+        此选项以stabs格式声称调试信息，并且包含仅供gdb使用的额外调试信息。</code></pre>
+<p>GCC 参数详解：<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/gcc-parameter-detail.html">https://www.runoob.com/w3cnote/gcc-parameter-detail.html</a></p>
+<p>#一、linux 下 gdb 的安装方法</p>
+<p>gdb 是 Linux 环境下的代码调试工具，其安装步骤如下：</p>
+<pre><code>    step1：首先检查系统中有没有安装过，有的话用一下命令卸载 gdb旧版本
+    step2：在网址：http://ftp.gnu.org/gnu/gdb下载 gdb 源码包。
+           或者直接在linux系统中用wget命令下载：
+           wget http://ftp.gnu.org/gnu/gdb/gdb-8.0.1.tar.gz
+           会下载到当前目录下。将源码包放在 home 目录的 Download 目录中。
+    step3：打开Download目录，用tar -zxvf 命令解压缩你下载的源码包
+    step4：.用以下命令生成makefile文件 
+           1. ./configure
+           2.make（这个需要的时间比较长，耐心等待哟~）
+           3.sudo make install
+           4.查看安装是否成功：gdb -v</code></pre>
+<p>查看 core 文件</p>
+<pre><code>产生core文件后，就可以利用命令gdb进行查找。
+切换到core文件所在的目录，输入命令：gdb ./test core-test-26795-1519971969
+参数一是应用程序的名称，参数二是core文件，展示错误内容，如下图所示：
+
+(gdb)后输入where，就会看到程序崩溃时堆栈信息
+（当前函数之前的所有已调用函数的列表（包括当前函数），gdb只显示最近几个）</code></pre>
+<p>##gdb 插件 Peda、Pwndbg、Gef 的安装</p>
+<p><a target="_blank" rel="noopener" href="http://www.peckerwood.top/post/peda_vs_pwndbg_gdb/">http://www.peckerwood.top/post/peda_vs_pwndbg_gdb/</a></p>
+<p>GDB的三个插件（gef gdbinit peda）超简单安装：<a target="_blank" rel="noopener" href="https://blog.csdn.net/aoxixi/article/details/90142736">https://blog.csdn.net/aoxixi/article/details/90142736</a></p>
+<p>gdb/pwndbg 常用命令简单整理：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhwer/p/12494317.html">https://www.cnblogs.com/zhwer/p/12494317.html</a></p>
+<p>kali 下 gdb 安装 peda|pwndbg|gef 走过的坑：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129837931">https://zhuanlan.zhihu.com/p/129837931</a></p>
+<p>在调试时有时候需要不同功能，在gdb下需要安装两个工具 pwndbg 和 peda，可惜这两个不兼容</p>
+<p>pwndbg 在调试堆的数据结构时候很方便。peda 在查找字符串等功能时方便</p>
+<p>安装 pwndbg：</p>
+<pre><code>git clone https://github.com/pwndbg/pwndbg
+cd pwndbg
+./setup.sh</code></pre>
+<p>安装 peda：</p>
+<p>git clone <a href="https://github.com/longld/peda.git">https://github.com/longld/peda.git</a> ~/peda</p>
+<p>安装 gef：</p>
+<pre><code># via the install script
+$ wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
+# manually
+$ wget -O ~/.gdbinit-gef.py -q https://github.com/hugsy/gef/raw/master/gef.py
+$ echo source ~/.gdbinit-gef.py &gt;&gt; ~/.gdbinit</code></pre>
+<p>切换 gdb 的调试工具 pwndbg 或 peda：</p>
+<pre><code>vim ~/.gdbinit
+source ~/peda/peda.py</code></pre>
+<p>把第二行添加到 gdbinit 的配置文件中去，把 pwndbg 的注释掉，即可切换为 peda</p>
+<p>选中 gef 的话，即添加一行：source ~/.gdbinit-gef.pysource ~/.gdbinit-gef.py</p>
+<p>#二、gdb 的 图形化GUI</p>
+<p>##gdb 的 图形化</p>
+<p>关键字：gdb前端 vim</p>
+<p>优秀的 gdb 图形化前端调试器：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34242331/article/details/85905052">https://blog.csdn.net/weixin_34242331/article/details/85905052</a></p>
+<p>vi/vim使用进阶: 在VIM中使用GDB调试 – 使用vimgdb：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/snowbook/p/5920637.html">https://www.cnblogs.com/snowbook/p/5920637.html</a></p>
+<p>gdb前端: VIM+Pyclewn 调试C/C++：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wucg/p/4095574.html">https://www.cnblogs.com/wucg/p/4095574.html</a></p>
+<p>##gdb 的 文本界面</p>
+<p>gdb Text User Interface(TUI) GDB 文本用户界面</p>
+<pre><code>(1) 打开TUI模式
+    方法一: 使用‘gdbtui’ or ‘gdb-tui’开始一个调试
+            $ gdbtui -q sample
+            (gdb) ....
+    方法二: 使用切换键 `ctrl+x ctrl+a` or `ctrl+x A` 或者 gdb模式下输入命令：（gdb）layout
+(2) TUI模式下有4个窗口,
+    command 命令窗口. 可以键入调试命令
+    source 源代码窗口. 显示当前行,断点等信息
+    assembly 汇编代码窗口
+    register 寄存器窗口
+    除command 窗口外,其他三个窗口不可同时显示.其可用 layout 命令来进行选择
+    自己需要的窗口. 可参见 `help layout` .
+(3) 设置TUI
+    set tui border-kind kind
+    Select the border appearance for the source, assembly and register windows.
+    The possible values are the following:
+    space: Use a space character to draw the border.
+    ascii: Use ascii characters ‘+’, ‘-’ and ‘|’ to draw the border.
+    acs Use the Alternate Character Set to draw the border. The 
+    border is
+    drawn: using character line graphics if the terminal supports them.
+(4) 更详尽的说明
+    http://sourceware.org/gdb/current/onlinedocs/gdb_23.html#SEC235.
+
+另：
+   ctrl+x再ctrl+a： 在classic和layout两种方式之间切换gdb的显示方式。
+   (layout方式的gdb很有用，但是layout方式的gdb有bug，你会用到这种快速切换的)</code></pre>
+<p>##gdb帮助<br>gdb 提供一个类似 Shell 的命令行环境，下面的 (gdb) 就是提示符，在这个提示符下输入help可以查看命令的类别。<br>使用 help 类别（比如 help data）可以进一步查看 data 类别下的命令帮助。</p>
+<p>(gdb) help<br>下面列出了命令分类（对每个命令都可以使用：help 命令 获取帮助。例如：help info）:</p>
+<pre><code>aliases -- Aliases of other commands
+breakpoints -- Making program stop at certain points
+data -- Examining data
+files -- Specifying and examining files
+internals -- Maintenance commands
+obscure -- Obscure features
+running -- Running the program
+stack -- Examining the stack
+status -- Status inquiries
+support -- Support facilities
+tracepoints -- Tracing of program execution without stopping the program
+user-defined -- User-defined commands
+
+Type &quot;help&quot; followed by a class name for a list of commands in that class.
+Type &quot;help all&quot; for the list of all commands.
+Type &quot;help&quot; followed by command name for full documentation.
+Type &quot;apropos word&quot; to search for commands related to &quot;word&quot;.
+Command name abbreviations are allowed if unambiguous.
+
+(gdb) help info</code></pre>
+<p>##使用 gdb 进行调试</p>
+<pre><code>1. 启动
+    gdb 应用程序名
+    gdb 应用程序名 core文件名
+    gdb 应用程序名 pid             
+    gdb 应用程序名 --args 应用程序的运行参数    //这个是在进入gdb 之前设置参数，也可以在进入gdb后设置参数。
+
+帮助:
+    help    显示帮助
+    info    显示程序状态
+    set     修改
+    show    显示gdb状态
+
+运行及运行环境设置:
+    set args                #   设置运行参数
+    show args               #   显示运行参数
+    set env 变量名 = 值     #   设置环境变量
+    unset env [变量名]      #   取消环境变量
+    show env [变量名]       #   显示环境变量
+    path 目录名             #   把目录添加到查找路径中
+    show paths              #   显示当前查找路径
+    cd 目录                 #   切换工作目录
+    pwd                     #   显示当前工作目录
+    tty /dev/pts/1              #   修改程序的输入输出到指定的tty
+    set inferior-tty /dev/pts/1 #   修改程序的输出到指定的tty
+    show inferior-tty
+    show tty
+    run 参数         #   运行
+    start 参数       #   开始运行，但是会在main函数停止
+    attach pid
+    detach
+
+    kill             #   退出
+    Ctrl-C           #   中断(SIGINT)
+    Ctrl-]
+
+线程操作:
+    info threads       #   查看所有线程信息
+    thread 线程id      #   切换到指定线程
+    thread apply [threadno | all ] 参数     #   对所有线程都应用某个命令
+
+子进程调试:
+    set follow-fork-mode child|parent   #   fork后，需要跟踪谁
+    show follow-fork-mode
+    set detach-on-flow on|off           #   fork后，需要两个都跟踪吗
+
+    info forks                          #   显示所有进程信息
+    fork 进程id                         #   切换到某个进程
+    detach-fork 进程id                  #   不再跟踪某个进程
+    delete fork 进程id                  #   kill某个进程并停止对它的跟踪
+
+调试子进程
+    方法一:
+        GDB对使用fork/vfork创建子进程的程序提供了follow-fork-mode选项来支持多进程调试。
+        set follow-fork-mode [parent|child]
+        * parent: fork之后继续调试父进程，子进程不受影响。
+        * child: fork之后调试子进程，父进程不受影响
+        (gdb) set follow-fork-mode child
+        (gdb) break 子进程行号
+    方法二:
+        使用GDB的attach命令.
+        attach命令可以绑定一个外部程序进行调试(可参考(gdb) help attach).
+        假设调试名为test_proc进程的子进程.先使用
+        $ ps -ef | grep test_proc
+        找出其子进程的PID号.然后
+        (gdb) attach &lt;子进程的PID&gt;
+        进行调试.之后,用detach命令终止调试.
+
+    可以把follow-fork-mode和attach混合使用,用来调试正在运行的程序的子进程.
+使用 GDB 调试多进程程序：http://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/
+
+线程断点:
+    break 行号信息 thread 线程号 [if 条件] #   只在某个线程内加断点
+
+线程调度锁:
+    set scheduler-locking on|off    #   off时所有线程都可以得到调度,on时只有当前
+    show scheduler-locking
+调用链:
+    backtrace(bt)   [n|-n|full] #  显示当前调用链,n限制显示的数目,-n表示显示后n个,n表示显示前n个，
+               #  full的话还会显示变量信息，使用 thread apply all bt 就可以显示所有线程的调用信息
+    set backtrace past-main on|off 
+    show backtrace past-main 
+    set backtrace past-entry on|off 
+    show backtrace past-entry
+    set backtrace limit n           #   限制调用信息的显示层数
+    show backtrace limit
+
+检查点:     checkpoint/restart
+
+查看停止原因:
+    info program</code></pre>
+<p>##用 gdb 查看、执行汇编代码<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hejinjing_tom_com/article/details/26704487">https://blog.csdn.net/hejinjing_tom_com/article/details/26704487</a><br>gdb调试汇编指令和查看寄存器：<a target="_blank" rel="noopener" href="https://www.linuxidc.com/linux/2014-10/108574.htm">https://www.linuxidc.com/linux/2014-10/108574.htm</a></p>
+<p>#三、gdb 常用操作</p>
+<pre><code>gdb -tui test     打开调试程序，界面分页，上面是代码，下面是命令。或者 gdbtui test
+                  gdbtui 的开关快捷键： ctrl+x ctrl+a 或者 ctrl+x A
+
+file test         在运行gdb下打开test文件
+回车键            直接敲击回车键表示执行 上一条 命令。
+run/r             运行程序
+continue/c        继续运行。当程序被停住后，可以使用continue命令（缩写c，fg命令同continue命令）,
+                  恢复程序的运行直到程序结束，或到达下一个断点。命令中可以给出一个数字N，忽略其后N-1次断点      
+step/s            单步进入。如果有函数则进入函数执行。　
+step [N]          如果遇到函数调用，并且该函数编译时有调试信息，则会进入该函数内执行。
+stepi             继续执行程序下一行源代码中的汇编指令。
+                  如果是函数调用，这个命令将进入函数的内部，单步执行函数中的汇编代码。
+next/n            单步执行。
+next [N]          遇到函数调用时，执行整个函数。
+nexti             执行下一行的源代码中的一条汇编指令
+until/c xxx       运行至当前语句块结束。可用于跳出循环。
+print/p               显示变量的值
+ptype                 显示变量的类型。即 print type
+whatis varName        查看变量varName的类型
+finish                继续执行，至到当前函数返回，然后停下来等待命令。即 跳出当前的函数。
+return &lt;expression&gt;   如果在函数中设置了调试断点，在断点后还有语句没有执行完，
+                      可以使用return命令强制函数忽略还没有执行的语句并返回。 
+                      如果指定了&lt;expression&gt;，那么该表达式的值会被作为函数的返回值。
+start             用start命令开始执行程序
+stop              停止运行
+kill              终止当前debug的进程
+
+guit/ctrl+d       退出GDB
+
+
+print命令是查看运行时的数据
+    print/p   var          打印变量var的值
+    set                    设置变量的值。例如：set nval=54 将把54保存到nval变量中
+    print/p   &amp;var         打印变量var的地址（存放变量 var 的地址）
+    printf/p  *addr        打印地址的值
+    printf/p /x var        用16进制显示数据。 
+                           x代表十六进制。d代表十进制。u代表十六进制无符号。t代表二进制。c代表字符。f代表浮点
+    print   array@5        显示从array（数组名）开始的5个值
+    print   array[2]@3     显示从array第二个元素开始的3个数组元素的值
+    whatis  i              显示变量i的数据类型
+    p file::variable       查看文件作用域变量
+    p function::variable   查看函数作用域变量
+    print &lt;expr&gt;     //expr可是变量名，表达式
+                     &lt;expr&gt;是表达式，是被调试的程序中的表达式，&lt;f&gt;是输出的格式，
+                     比如，如果要把表达式按16进制的格式输出，那么就是/x。
+                     在表达式中，有几种GDB所支持的操作符，它们可以用在任何一种语言中，
+                    “@”是一个和数组有关的操作符，
+                    “::”指定一个在文件或是函数中的变量，
+                    “&#123;&lt;type&gt;&#125; &lt;addr&gt;”表示一个指向内存地址&lt;addr&gt;的类型为type的一个对象。
+    ------------------------------------------------------
+    查看数据:
+        ptype   表达式      #   查看某个表达式的类型
+        print [/f] [表达式] #   按格式查看表达式内容,/f是格式化
+        set print address on|off   #   打印时是不是显示地址信息
+        show print address
+        set print symbol-filename on|off # 是不是显示符号所在文件等信息
+        show print symbol-filename
+        set print array on | off    #   是不是打印数组
+        show print array
+        set print array index   on | off    #   是不是打印下标
+        show print array index
+        ...
+        表达式可以用下面的修饰符:
+            var@n           #   表示把var当成长度为n的数组
+            filename::var   #   表示打印某个函数内的变量,filename可以换成其它范围符如文件名
+            &#123;type&#125; var      #   表示把var当成type类型
+        输出格式:
+            x               #   16进制
+            d               #   10进制
+            u               #   无符号
+            o               #   8进制
+            t               #   2进制
+            a               #   地址
+            c               #   字符
+            f               #   浮点
+
+断点（使用 break 命令设置断点）                                        
+    break/b n                 在 当前文件 第n行 打断点 。例如： b 10
+    break/b func              在 当前文件 函数func 的入口处设置断点。例如：b main
+    break *address            在程序运行的内存地址处停住。
+    break/b 30 if n==100      当变量n等于100的时候在30行处加断点
+                              break ... if 条件成立时停住。例如: break 337 if i==0
+    break fileName:N            在文件名为fileName的文件的第N行加断点。  例如： b test.cpp:10
+    break filename:linenum      在源文件filename的linenum行处停住。例如 b test.cpp:main
+    break filename:function     在源文件filename的function函数的入口处停住。
+    info break/breakpoints/b  查看断点
+    info b[n]                 列出所有断点信息(info breakpoints/break/watchpoints  [num])
+    clear N                   删除N行断点
+    delete N                  删除N号断点
+    delete                    删除所有断点 (d : 删除所有断点。后面可给出断点号码，多个断点用空格分开)
+    disable xxx               禁止断点功能，禁用多个则用空格分开。这个命令需要禁止的断点在断点列表索引值作为参数
+    enable xxx                激活被停用的断点，各断点号码用空格分开，这个命令需要允许的断点在断点列表索引值作为参数
+    display                   在断点的停止的地方，显示指定的表达式的值。（显示变量）
+    ignore                    忽略某个断点制定的次数。例：ignore 4 23 忽略断点4的23次运行，在第24次的时候中断
+    --------------------------------------------------------------------------------------------------------
+    断点(breakpoint):   程序运行到某处就会中断
+        break(b)    行号|函数名|程序地址 | +/-offset | filenam:func   [if 条件]   #   在指定位置设置断点
+        tbreak      ...           #   与break相似，只是设置一次断点
+        hbreak      ...           #   与break相似，只是设置硬件断点，需要硬件支持
+        thbreak     ...           #   与break相似，只是设置一次性硬件断点，需要硬件支持
+        rbreak      正则表达式    #   给一批满足条件的函数打上断点
+        info break [断点号]       #   查看某个断点或所有断点信息
+
+        set breadpoint pending auto|on|off    #   查看如果断点位置没有找到时行为
+        show breakpoint pending
+
+    观察点(watchpoint): 表达式的值修改时会被中断
+        watch   表达式          #   当表达式被写入，并且值被改变时中断
+        rwatch 表达式           #   当表达式被读时中断
+        awatch 表达式           #   当表达式被读或写时中断
+        info watchpoints    
+        set can-use-hw-watchpoints 值      #   设置使用的硬件观察点的数
+        show can-use-hw-watchpoints 
+        rwatch与awatch需要有硬件支持，另外如果是对局部变量使用watchpoint，那退出作用域时观察点会自动被删除
+        另外在多线程情况下，gdb的watchpoint只对一个线程有效
+
+    捕获点(catchpoint): 程序发生某个事件时停止，如产生异常时
+        catch   事件名
+        事件包括:
+                throw                    #   产生c++异常
+                catch                    #   捕获到c++异常
+                exec/fork/vfork          #   一个exec/fork/vfork函数调用,只对HP-UX
+                load/unload    [库名]    #   加载/卸载共享库事件，对只HP-UX
+        tcatch 事件名                    #   一次性catch
+        info    break
+
+    断点操作:
+        clear   [函数名|行号]    #   删除断点，无参数表示删除当前位置
+        delete  [断点号]         #   删除断点，无参数表示删所有断点
+        disable [断点号]
+        enable  [断点号]
+
+        condition   断点号 条件     #   增加断点条件
+        condition   断点号          #   删除断点条件
+        ignore      断点号 数目     #   忽略断点n次 
+
+        commands    断点号          #   当某个断点中断时打印条件
+            条件
+        end
+        下面是一个例子,可以一直打印当前的X值：
+        commands    3
+            printf &quot;X:%d\n&quot;,x
+            cont
+        end
+
+    断点后操作:
+        continue(c) [忽略次数] #   继续执行，[忽略前面n次中断]
+        fg          [忽略次数] #   继续执行，[忽略前面n次中断]
+        step(s)     [n步]       #   步进,重复n次
+        next(n)     [n步]       #   前进,重复n次
+        finish                  #   完成当前函数调用，一直执行到返回处，并打印返回值
+        until(u)    [位置]      #   一直执行到当前行或指定位置，或是当前函数返回
+        advance     位置        #   前面到指定位置，如果当前函数返回则停止,与until类似
+        stepi(si)   [n步]       #   精确的只执行一个汇编指令,重复n次
+        nexti(ni)   [n步]       #   精确的只执行一个汇编指令,碰到函数跳过,重复n次
+        set step-mode   on|off #   on时,如果函数没有调试信息也跟进
+        show step-mode
+
+
+info（或i） locals    查看当前栈帧局部变量的值
+info line       [行号][函数名][文件名:行号][文件名:函数名]
+info display    查看设置的需要显示的表达式的信息
+info source     查看当前程序
+info stack      查看堆栈信息
+info args       查看当前参数值
+display args    查看当前参数值
+
+自动显示的变量值的相关命令。已经设置后的变量，当每执行一个调试命令后会自动显示在调试界面中。
+
+display &lt;expr&gt;               设置要自动显示值的变量
+display /&lt;fmt&gt; &lt;expr&gt;        设置要自动显示的变量及数据的显示格式
+undisplay  display &lt;dnum&gt;    删除一个自动显示变量
+delete display &lt;dnum&gt;        删除一个自动显示变量
+undisplay/delete display &lt;dnum1~dnum5&gt;     删除一个范围内的自动变量
+disable/enable display &lt;dnum&gt;              禁用/启用一个自动显示变量
+info display                               查看设置的自动显示变量
+
+
+pwd        查看程序路径
+ctrl+p     前一条命令
+ctrl+n     下一条命令
+watch xxx  设置监控点，在变量改变的时候停下来。（不可直接设置，先加断点在监测）
+
+ctrl+l    可能layout会造成控制台花屏,使用ctrl+L清屏
+
+
+使用 list命令 显示源文件：
+    list（或l）    列出源代码，如果没有提供参数给这个命令，则接着上次的位置往下列，默认每次列10行
+    list 行号    列出从第几行开始的源代码
+    list 函数名    从函数开头列出显示某个函数的源代码
+    list linenum          以linenum指定的行号为中心，显示10行
+    list function         以指定的函数为中心，显示10行
+    list +                以上次显示的结束行为起始行显示后10行
+    list -                以上次显示的起始行为结束行，显示前10行
+    list first,last       显示first行与last行之间的代码
+    list ,last            显示当前行到last行之间的代码
+    list first,           以first为第一行，显示10行
+    set listsize count    设置每次显示的行数。
+    show listsize         显示已设置的显示行数。
+    -------------------------------------------------------------------    
+    显示行号:
+        list(l) [行号|函数|文件:行号]   #   显示指定位置的信息,无参数为当前位置
+        list    -                       #   显示当前行之前的信息
+        list    first,last              #   从frist显示到last行
+        list    ,last                   #   从当前行显示到last行
+        list    frist,                  #   从指定行显示
+        list    +                       #   显示上次list后显示的内容
+        list    -                       #   显示上次list前面的内容
+        在上面，first和last可以是下面类型:
+            行号
+            +偏移
+            -偏移
+            文件名:行号
+            函数名
+            函数名:行号        
+
+
+查看栈信息
+    栈的定义：栈是一种特殊的表这种表只在表头进行插入和删除操作。
+              因此，表头对于栈来说具有特殊的意义，称为栈顶。相应地，表尾称为栈底。不含任何元素的栈称为空栈。
+              任何时候，出栈的元素都是栈顶元素。换句话说，栈的修改是按后进先出的原则进行的.
+              因此，栈又称为后进先出(Last In First Out)表，简称为LIFO表。
+              所以，只要问题满足LIFO原则，就可以使用栈
+backtrace/bt    打印当前的函数调用栈的所有信息。查看函数堆栈（函数各级调用信息）
+如：
+(gdb) bt
+#0  func (n=250) at tst.c:6
+#1  0x08048524 in main (argc=1, argv=0xbffff674) at tst.c:30
+#2  0x400409ed in __libc_start_main () from /lib/libc.so.6
+从上可以看出函数的调用栈信息：__libc_start_main --&gt; main() --&gt; func()
+
+
+backtrace &lt;n&gt;
+bt &lt;n&gt;             n是一个正整数，表示只打印栈顶上n层的栈信息。
+backtrace &lt;-n&gt;
+bt &lt;-n&gt;            -n表一个负整数，表示只打印栈底下n层的栈信息。
+
+如果你要查看某一层的信息，你需要切换当前栈，一般来说，程序停止时，最顶层的栈就是当前栈，
+如果你要查看栈下面层的详细信息，首先要做的是切换当前栈。切换栈使用 frame 命令
+
+帧 frame:
+    frame &lt;n&gt;
+    f &lt;n&gt;        n是一个从0开始的整数，是栈中的层编号。比如：frame 0，表示栈顶，frame 1，表示栈的第二层。
+    frame(f) [帧编号]       #   不带参数时显示所有帧信息，带参数时切换到指定帧。即 选择指定栈帧
+    frame    地址           #   切换到指定地址的帧
+    up       [n]            #   表示向栈的上面移动n层，可以不打n，表示向上移动一层。
+    down     [n]            #   表示向栈的下面移动n层，可以不打n，表示向下移动一层。
+
+    上面的命令，都会打印出移动到的栈层的信息。如果你不想让其打出信息。你可以使用这三个命令：
+    select-frame   帧号     #   切换到指定帧并且不打印被转换到的帧的信息。对应于 frame 命令。
+    up-silently    [n]      #   向上n帧,不显示帧信息。对应于 up 命令。
+    down-silently  [n]      #   向下n帧,不显示帧信息。对应于 down 命令。
+
+查看当前栈层的信息，你可以用以下GDB命令：
+    frame 或 f    会打印出这些信息：栈的层编号，当前的函数名，函数参数值，函数所在文件及行号，函数执行到的语句。
+
+
+显示帧信息:
+    info    frame       #   显示当前帧信息。或者 info f
+                            这个命令会打印出更为详细的当前栈层的信息，只不过，大多数都是运行时的内存地址。
+                            比如：函数地址，调用函数的地址，被调用函数的地址，目前的函数是由什么样的程序语言写成的、
+                            函数参数地址及值、局部变量的地址等等。
+    info    frame addr  #   显示指定地址的帧信息
+    info    args        #   显示帧的参数
+    info    locals      #   显示局部变量信息
+    info    catch       #   显示本帧异常信息
+
+
+jump命令
+一般来说，被调试程序会按照程序代码的运行顺序依次执行，但是GDB也提供了乱序执行的功能。
+也就是说，GDB可以修改程序的执行顺序，从而让程序随意跳跃。
+这个功能可以由GDB的jump命令：jump &lt;linespec&gt; 来指定下一条语句的运行点。
+&lt;linespec&gt;可以是文件的行号，可以是file:line格式，也可以是+num这种偏移量格式，表示下一条运行语句从哪里开始。
+jump &lt;address&gt; 这里的&lt;address&gt;是代码行的内存地址。 
+注意，jump命令不会改变当前的程序栈中的内容，
+所以，如果使用jump从一个函数跳转到另一个函数，当跳转到的函数运行完返回，进行出栈操作时必然会发生错误，
+这可能导致意想不到的结果，所以最好只用jump在同一个函数中进行跳转。
+
+
+1、程序运行参数。
+    set args 可指定运行时参数。（如：set args -f 20 -t 40）
+    show args 命令可以查看设置好的运行参数。
+
+2、运行环境。
+    path 可设定程序的运行路径。
+    show paths 查看程序的运行路径。
+    set environment varname [=value] 设置环境变量。如：set env USER=user
+    show environment [varname] 查看环境变量。
+
+3、工作目录。
+    cd 相当于shell的cd命令。
+    pwd 显示当前的所在目录。
+
+4、程序的输入输出。
+    info terminal 显示你程序用到的终端的模式。
+    使用重定向控制程序输出。如：run &gt; outfile
+    tty命令可以指写输入输出的终端设备。如：tty /dev/ttyb
+
+
+设置观察点（WatchPoint）
+    watch 一量表达式值有变化时，马上停住程序。
+    rwatch 当表达式（变量）expr被读时，停住程序。
+    awatch 当表达式（变量）的值被读或被写时，停住程序。
+    info watchpoints 列出当前所设置了的所有观察点。
+
+
+为停止点设定运行命令(很实用的强大的功能.)
+    commands [bnum]
+    ... command-list ...
+    end
+    为断点号bnum指写一个命令列表。当程序被该断点停住时，gdb会依次运行命令列表中的命令。
+
+
+停止条件维护
+    condition 修改断点号为bnum的停止条件为expression。
+    condition 清除断点号为bnum的停止条件。
+
+
+信号:
+    signal 命令
+    使用 singal 命令，可以产生一个信号量给被调试的程序，如中断信号“Ctrl+C”。
+    这非常方便于程序的调试，可以在程序运行的任意位置设置断点，并在该断点用GDB产生一个信号量，
+    这种精确地在某处产生信号的方法非常有利于程序的调试。 
+
+    signal 命令 的 语法是：signal &lt;signal&gt;，UNIX的系统信号量通常从1到15，所以&lt;signal&gt;取值也在这个范围。
+
+    info signals            #   列出所有信号的处理方式
+    info handle             #   同上
+
+    handle 信号    方式    #   改变当前处理某个信号的方式
+    方式包括:
+                    nostop #   当信号发生时不停止，只打印信号曾经发生过
+                    stop    #   停止并打印信号
+                    print   #   信号发生时打印
+                    noprint #   信号发生时不打印
+                    pass/noignore # gdb充许应用程序看到这个信号
+                    nopass/ignore # gdb不充许应用程序看到这个信号
+
+编辑:
+    edit    [行号|函数|函数名:行号|文件名:函数名] # 编辑指定位置
+
+查找:
+    search          表示式      #   向前查找表达式
+    reverse-search 表示式       #   向后查找表达式
+
+指定源码目录:
+    directory(dir) [目录名]     #   指定源文件查找目录
+    show directories
+
+源码与机器码：
+    info line [函数名|行号]     #   显示指定位置对应的机器码地址范围
+    disassemble [函数名 | 起始地址 结束地址]    #   对指定范围进行反汇编
+    set disassembly-flavor att|intel            #   指定汇编代码形式
+    show disassembly-flavor    
+
+查看内存:
+
+    examine命令（缩写为x）来查看内存地址中的值。
+    examine命令的语法：x/&lt;n/f/u&gt; &lt;addr&gt; 
+         &lt;addr&gt; 表示一个内存地址。“x/”后的n、f、u都是可选的参数。
+         n 是一个正整数，表示显示内存的长度，也就是说从当前地址向后显示几个地址的内容；
+         f 表示显示的格式，如果地址所指的是字符串，那么格式可以是s，如果地址是指令地址，那么格式可以是i；
+         u 表示从当前地址往后请求的字节数，如果不指定的话，GDB默认是4字节。
+         u 参数可以被一些字符代替：b表示单字节，h表示双字节，w表示四字节，g表示八字节。
+         当我们指定了字节长度后，GDB会从指定的内存地址开始，读写指定字节，并把其当作一个值取出来。
+         n、f、u 这3个参数可以一起使用，
+      例如命令“x/3uh 0x54320”表示从内存地址0x54320开始以双字节为1个单位（h）、16进制方式（u）显示3个单位（3）的内存。
+
+    x   /nfu    地址    #   查看内存
+        n       重复n次
+        f       显示格式,为print使用的格式
+        u       每个单元的大小,为
+                b       byte
+                h       2 byte
+                w       4 byte
+                g       8 byte
+
+
+自动显示:
+    display [/fmt] 表达式 #   每次停止时都会显示表达式,fmt与print的格式一样,如果是内存地址，那fmt可像 x的参数一样
+    undisplay   显示编号
+    delete display 显示编号    #   这两个都是删附某个显示
+    disable display 显示编号    #   禁止某个显示
+    enable display 显示编号     #   重显示
+    display                     #   显示当前显示内容
+    info display                #   查看所有display项
+
+查看变量历史：
+    show values 变量名 [n]     #   显示变量的上次显示历史,显示n条
+    show values 变量名 +       #   继续上次显示内容
+
+便利变量:   (声明变量的别名以方便使用)
+    set $foo    = *object_ptr   #   声明foo为object_ptr的便利变量
+    init-if-undefined $var = expression #   如果var还未定义则赋值
+    show convenience
+
+内部便利变量：
+    $_      上次x查看的地址
+    $__
+    $_exitcode 程序垢退出码
+
+寄存器:
+    into registers      #   除了浮点寄存器外所有寄存器
+    info all-registers #   所有寄存器
+    into registers 寄存器名     #   指定寄存器内容
+    info float          #   查看浮点寄存器状态
+    info vector         #   查看向量寄存器状态
+    gdb为一些内部寄存器定义了名字，如$pc(指令),$sp(栈指针),$fp(栈帧),$ps(程序状态)
+    p /x $pc    #   查看pc寄存器当前值
+    x /i $pc    #   查看要执行的下一条指令
+    set $sp += 4 # 移动栈指针
+
+内核中信息:
+    info udot       #   查看内核中user struct信息
+    info auxv       #   显示auxv内容(auxv是协助程序启动的环境变量的)
+
+内存区域限制:
+    mem 起始地址 结构地址 属性  #   对[地始地址,结构地址)区域内存进行保护，如果结构地址为0表示地址最大值0xffffffff
+    delete mem 编号             #   删除一个内存保护
+    disable mem 编号            #   禁止一个内存保护
+    enable mem 编号             #   打开一个内存保护
+    info mem                    #   显示所有内存保护信息
+    保护的属性包括：
+        1. 内存访问模式:   ro | wo |rw
+        2. 内存访问大小:   8 | 16 | 32 | 64    如果不限制，表示可按任意大小访问
+        3. 数据缓存:       cache | nocache     cache表示充许gdb缓存目标内存
+内存复制到/从文件:
+    dump [格式] memory 文件名 起始地址 结构地址 #   把指定内存段写到文件
+    dump [格式] value 文件名 表达式             #   把指定值写到文件
+        格式包括:
+            binary      原始二进制格式
+            ihex        intel 16进制格式
+            srec        S-recored格式
+            tekhex      tektronix 16进制格式
+    append [binary] memory 文件名 起始地址 结构地址 #   按2进制追加到文件
+    append [binary] value 文件名 表达式             #   按2进制追加到文件
+    restore 文件名 [binary] bias 起始地址 结构地址  #   恢复文件中内容到内存.
+                                                    #   如果文件内容是原始二进制，需要指定binary参数，
+                                                        不然会gdb自动识别文件格式
+产生core dump文件
+        gcore   [文件名]    #   产生core dump文件
+字符集:
+    set target-charset 字符集   # 声明目标机器的locale,如gdbserver所在机器
+    set host-charset 字符集     # 声明本机的locale
+    set charset     字符集      # 声明目标机和本机的locale
+    show charset
+    show host-charset
+    show target-charset
+
+缓存远程目标的数据:为提高性能可以使用数据缓存，不过gdb不知道volatile变量，缓存可能会显示不正确的结构
+    set remotecache on | off
+    show remotecache 
+    info dcache         #   显示数据缓存的性能
+
+C预处理宏:
+    macro expand(exp) 表达式        #   显示宏展开结果
+    macro expand-once(expl) 表达式  #   显示宏一次展开结果
+    macro info 宏名                 #   查看宏定义
+
+追踪(tracepoint):   就是在某个点设置采样信息，每次经过这个点时只执行已经定义的采样动作但并不停止，
+                    最后再根据采样结果进行分析。
+采样点定义:
+    trace   位置             #   定义采样点
+    info tracepoints         #   查看采样点列表
+    delete trace 采样点编号  #   删除采杰点
+    disable trace 采样点编号 #   禁止采杰点
+    enable trace 采样点编号  #   使用采杰点
+    passcount 采样点编号 [n] #   当通过采样点 n次后停止,不指定n则在下一个断点停止
+
+预定义动作：预定义动作以actions开始,后面是一系列的动作
+    actions [num]           #   对采样点num定义动作
+    行为:
+        collect 表达式      #   采样表达式信息
+            一些表达式有特殊意义，如$regs(所有寄存器),$args(所有函数参数),$locals(所有局部变量)
+        while-steping n     #   当执行第n次时的动作,下面跟自己的collect操作
+
+采样控制:
+    tstart                  #   开始采样
+    tstop                   #   停止采样
+    tstatus                 #   显示当前采样的数据
+
+使用收集到的数据:
+    tfind start             #   查找第一个记录
+    tfind end | none        #   停止查找
+    tfind                   #   查找下一个记录
+    tfind -                 #   查找上一个记录
+    tfind tracepoint N      #   查找 追踪编号为N 的下一个记录
+    tfind pc 地址           #   查找代码在指定地址的下一个记录
+    tfind range 起始,结束
+    tfind outside 起始，结构
+    tfind line [文件名:]行号
+    tdump                   #   显示当前记录中追踪信息
+    save-tracepoints 文件名 #   保存追踪信息到指定文件,后面使用source命令读
+
+追踪中的便利变量:
+    $trace_frame            #   当前帧编号, -1表示没有, INT
+    $tracepoint             #   当前追踪,INT
+    $trace_line             #   位置    INT
+    $trace_file             #   追踪文件 string, 需要使用output输出，不应用printf
+    $trace_func             #   函数名 string
+
+覆盖技术(overray): 用于调试过大的文件
+gdb文件:
+    file    文件名          #   加载文件,此文件为可执行文件，并且从这里读取符号
+    core    文件名          #   加载core dump文件
+    exec-file   文件名      #   加载可执行文件
+    symbol-file 文件名      #   加载符号文件
+    add-symbol-file 文件名 地址 #   加载其它符号文件到指定地址
+    add-symbol-file-from-memory 地址    #   从指定地址中加载符号
+    add-share-symbol-files 库文件   #   只适用于cygwin
+    session 段 地址         #   修改段信息
+    info files | target     #   打开当前目标信息
+    maint info sections     #   查看程序段信息
+    set truct-readonly-sections on | off #   加快速度
+    show truct-readonly-sections
+    set auto-solib-add on | off    #   修改自动加载动态库的模式
+    show auto-solib-add
+    info share                      #   打印当前加载的共享库的地址信息
+    share [正则表达式]              #   从符合的文件中加载共享库的正则表达式
+    set stop-on-solib-events on | off # 设置当加载共享库时是不是要停止
+    show stop-on-solib-events
+
+    set solib-absolute-prefix 路径 #   设置共享库的绝对路矩，当加载共享库时会以此路径下查找(类似chroot)
+    show solib-absolute-prefix 
+    set solib-search-path   路径    #   如果solib-absolute-prefix查找失败，那将使用这个目录查找共享库
+    show solib-search-path
+
+修改远程目标的网络字节序格式:
+    set endian big | little | auto
+    show endian</code></pre>
+<p>#四、gdb使用总结</p>
+<p>##1. 基本命令</p>
+<pre><code>1）进入GDB　　#gdb test
+　　  test是要调试的程序，由gcc test.c -g -o test生成。进入后提示符变为(gdb) 。
+2）查看源码　　(gdb) l　　  
+　　  查看其他文件中定义的函数，在l后加上函数名即可定位到这个函数的定义及查看附近的其他源码。
+      或者使用断点或单步运行，到某个函数处使用s进入这个函数。
+3）设置断点　　(gdb) b 6
+　　这样会在运行到源码第6行时停止，可以查看变量的值、堆栈情况等；这个行号是gdb的行号。
+4）查看断点处情况　　(gdb) info b
+　　可以键入&quot;info b&quot;来查看断点处情况，可以设置多个断点；
+5）运行代码　　(gdb) r
+6）显示变量值　　(gdb) p n
+　　在程序暂停时，键入&quot;p 变量名&quot;(print)即可；
+　　GDB在显示变量值时都会在对应值之前加上&quot;$N&quot;标记，它是当前变量值的引用标记，
+    以后若想再次引用此变量，就可以直接写作&quot;$N&quot;，而无需写冗长的变量名；
+
+7）观察变量　　(gdb) watch n
+    在某一循环处，往往希望能够观察一个变量的变化情况，这时就可以键入命令
+    &quot;watch&quot;来观察变量的变化情况，GDB在&quot;n&quot;设置了观察点；
+8）单步运行　　(gdb) n
+9）程序继续运行　　(gdb) c
+　　使程序继续往下运行，直到再次遇到断点或程序结束；
+10）退出GDB　　(gdb) q</code></pre>
+<p>##2：断点调试<br>命令格式|例子|作用<br>–|:–:|–:<br>break + 设置断点的行号　　｜break n　　　　　｜在 n 行处设置断点<br>tbreak + 行号 或 函数名　　｜tbreak n/func　　｜设置临时断点，到达后被自动删除<br>break + filename:行号　　｜break main.c:10　｜用于在指定文件对应行设置断点<br>break + &lt;0x…&gt;　　｜break 0x3400a　　｜用于在内存某一位置处暂停<br>break + 行号 + if + 条件　　｜break 10 if i==3｜用于设置条件断点，在循环中使用非常方便<br>info breakpoints/watchpoints [n]｜info break　　｜n 表示断点号，查看断点/观察点的情况<br>clear + 要清除的断点行号　　｜clear 10　　　｜用于清除对应行的断点，要给出断点的行号，清除时GDB会给出提示<br>delete + 要清除的断点编号　　｜delete 3　　　｜用于清除断点和自动显示的表达式的命令，要给出断点的编号，清除时GDB不会给出任何提示<br>disable/enable + 断点编号　　｜disable 3　　｜让所设断点暂时失效/使能，如果要让多个编号处的断点失效/使能，可将编号之间用空格隔开<br>awatch/watch + 变量　　｜awatch/watch i　｜设置一个观察点，当变量被读出或写入时程序被暂停<br>rwatch + 变量　　　　　　｜rwatch i　　　　｜设置一个观察点，当变量被读出时，程序被暂停<br>catch　　　　　｜｜设置捕捉点来补捉程序运行时的一些事件。如：载入共享库（动态链接库）或是C++的异常<br>tcatch　　　　　｜｜只设置一次捕捉点，当程序停住以后，应点被自动删除</p>
+<p>##3. 数据命令</p>
+<pre><code>display + 表达式　　              显示表达式的值，每当程序运行到断点处都会显示表达式的值。display a　
+info display　　　　　　          显示当前所有要显示值的表达式的情况 
+delete + display的编号　　        删除一个要显示值的表达式，被删除的表达式将不被显示。delete 3　
+disable/enable + display的编号　　使一个要显示值的表达式暂时失效/使能。disable/enable 3　　
+undisplay + display的编号　　 　　用于结束某个表达式值的显示。undisplay 3
+whatis + 变量　　　　             显示某个表达式的数据类型。 whatis i
+print(p) + 变量/表达式　          用于打印变量或表达式的值。　p n　　
+　　    使用print命令时，可以对变量按指定格式进行输出，其命令格式为print /变量名 + 格式
+　　    其中常用的变量格式：x：十六进制；d：十进制；u：无符号数；o：八进制；c：字符格式；f：浮点数。
+set + 变量 = 变量值　　         　改变程序中某个变量的值。set i = 3　</code></pre>
+<p>##调试运行环境相关命令</p>
+<pre><code>set args　　　　    设置运行参数。 set args arg1 arg2
+show args　　　     参看运行参数。 show args
+set width + 数目    设置GDB的行宽。set width 70
+cd + 工作目录　　   切换工作目录。 cd ../　　
+run　　           　程序开始执行。 r/run　
+step(s)　     进入式（会进入到所调用的子函数中）单步执行，进入函数的前提是，此函数被编译有debug信息
+next(n)　     非进入式（不会进入到所调用的子函数中）单步执行
+finish　　    一直运行到函数返回并打印函数返回时的堆栈地址和返回值及参数值等信息
+until + 行数　　   运行到函数某一行 。　u 3　
+continue(c)　　　　执行到下一个断点或程序结束 
+return &lt;返回值&gt;　　改变程序流程，直接结束当前函数，并将指定值返回。return 5　　
+call + 函数　　    在当前位置执行所要运行的函数。call func　</code></pre>
+<p>##5. 堆栈相关命令</p>
+<pre><code>backtrace/bt　　 用来打印栈帧指针，也可以在该命令后加上要打印的栈帧指针的个数。backtrace（或bt）查看各级函数调用及参数
+                 查看程序执行到此时，都经过哪些函数/程序的调用，
+                 程序“调用堆栈”是当前函数之前的所有已调用函数的列表（包括当前函数）。
+                 每个函数及其变量都被分配了一个“帧”，最近调用的函数在 0 号帧中（“底部”帧）
+frame　　        用于打印指定栈帧。例如：frame 1　　
+info reg　　     查看寄存器使用情况。例如：info reg　　
+info stack　　   查看堆栈使用情况。例如：info stack　　
+up/down　　　    跳到上一层/下一层函数。up/down　</code></pre>
+<p>##6. 跳转执行</p>
+<p>jump 指定下一条语句的运行点。可以是文件的行号，可以是file:line格式，可以是+num这种偏移量格式。表式着下一条运行语句从哪里开始。相当于改变了PC寄存器内容，堆栈内容并没有改变，跨函数跳转容易发生错误。 jump 指定下一条语句的运行点。可以是文件的行号，可以是file:line格式，可以是+num这种偏移量格式。表式着下一条运行语句从哪里开始。相当于改变了PC寄存器内容，堆栈内容并没有改变，跨函数跳转容易发生错误。</p>
+<p>##7. 信号命令</p>
+<pre><code>signal 　　signal SIGXXX 　　产生XXX信号，如SIGINT。一种速查Linux查询信号的方法：# kill -l
+handle 　　在GDB中定义一个信号处理。信号可以以SIG开头或不以SIG开头，可以用定义一个要处理信号的范围（如：SIGIO-SIGKILL，表示处理从SIGIO信号到SIGKILL的信号，其中包括SIGIO，SIGIOT，SIGKILL三个信号），也可以使用关键字all来标明要处理所有的信号。一旦被调试的程序接收到信号，运行程序马上会被GDB停住，以供调试。其可以是以下几种关键字的一个或多个：
+　　nostop/stop
+　　　　当被调试的程序收到信号时，GDB不会停住程序的运行，但会打出消息告诉你收到这种信号/GDB会停住你的程序  
+　　print/noprint
+　　　　当被调试的程序收到信号时，GDB会显示出一条信息/GDB不会告诉你收到信号的信息 
+　　pass 
+　　noignore 
+　　　　当被调试的程序收到信号时，GDB不处理信号。这表示，GDB会把这个信号交给被调试程序会处理。 
+　　nopass 
+　　ignore 
+　　　　当被调试的程序收到信号时，GDB不会让被调试程序来处理这个信号。 
+　　info signals 
+　　info handle 
+　　　　可以查看哪些信号被GDB处理，并且可以看到缺省的处理方式
+　　single命令和shell的kill命令不同，系统的kill命令发信号给被调试程序时，是由GDB截获的，而single命令所发出一信号则是直接发给被调试程序的。</code></pre>
+<p>##8. 运行 Shell 命令</p>
+<p>在 gdb 环境中，你可以执行 UNIX 的 shell 的命令，使用 gdb 的 shell 命令来完成：shell <command string></p>
+<p>例如：<code>(gdb) shell ls             // 在 gdb 中运行 ls。</code></p>
+<p>##9. 更多程序运行选项和调试</p>
+<pre><code>1、程序运行参数。 
+　　set args 可指定运行时参数。（如：set args 10 20 30 40 50） 
+　　show args 命令可以查看设置好的运行参数。 
+2、运行环境。 
+　　path 可设定程序的运行路径。 
+　　show paths 查看程序的运行路径。
+　　set environment varname [=value] 设置环境变量。如：set env USER=hchen 
+　　show environment [varname] 查看环境变量。 
+3、工作目录。
+　　cd　　  相当于shell的cd命令。 
+　　pwd　　显示当前的所在目录。 
+4、程序的输入输出。 
+　　info terminal 显示你程序用到的终端的模式。 
+　　使用重定向控制程序输出。如：run &gt; outfile 
+　　tty命令可以指写输入输出的终端设备。如：tty /dev/ttyb
+5、调试已运行的程序
+两种方法： 
+　　(1)在UNIX下用ps查看正在运行的程序的PID（进程ID），然后用gdb PID格式挂接正在运行的程序。 
+　　(2)先用gdb 关联上源代码，并进行gdb，在gdb中用attach命令来挂接进程的PID。并用detach来取消挂接的进程。
+6、暂停 / 恢复程序运行　　当进程被gdb停住时，你可以使用info program 来查看程序的是否在运行，进程号，被暂停的原因。 在gdb中，我们可以有以下几种暂停方式：断点（BreakPoint）、观察点（WatchPoint）、捕捉点（CatchPoint）、信号（Signals）、线程停止（Thread Stops），如果要恢复程序运行，可以使用c或是continue命令。
+7、线程（Thread Stops）
+如果程序是多线程，可以定义断点是否在所有的线程上，或是在某个特定的线程。 
+　　break thread
+　　break thread if ... 
+　　linespec指定了断点设置在的源程序的行号。threadno指定了线程的ID，注意，这个ID是GDB分配的，可以通过“info threads”命令来查看正在运行程序中的线程信息。如果不指定thread 则表示断点设在所有线程上面。还可以为某线程指定断点条件。如： 
+　　(gdb) break frik.c:13 thread 28 if bartab &gt; lim 
+当你的程序被GDB停住时，所有的运行线程都会被停住。这方便查看运行程序的总体情况。而在你恢复程序运行时，所有的线程也会被恢复运行。</code></pre>
+<p>##10. 调试 core 文件</p>
+<pre><code>Core Dump：Core 的意思是内存，Dump 的意思是扔出来，堆出来。
+
+开发和使用 Unix 程序时，有时程序莫名其妙的 down 了，却没有任何的提示 ( 有时候会提示 core dumped)，这时候可以查看一下有没有形如 core.进程号 的文件生成，这个文件便是操作系统把程序 down 掉时的内存内容扔出来生成的，它可以做为调试程序的参考</code></pre>
+<pre><code>(1)生成Core文件
+　　一般默认情况下，core file的大小被设置为了0，这样系统就不dump出core file了。修改后才能生成core文件。
+　　#设置core大小为无限
+　　ulimit -c unlimited
+　　#设置文件大小为无限
+　　ulimit unlimited
+　　这些需要有root权限, 在ubuntu下每次重新打开中断都需要重新输入上面的第一条命令, 来设置core大小为无限
+core文件生成路径:输入可执行文件运行命令的同一路径下。若系统生成的core文件不带其他任何扩展名称，则全部命名为core。新的core文件生成将覆盖原来的core文件。
+1）/proc/sys/kernel/core_uses_pid可以控制core文件的文件名中是否添加pid作为扩展。文件内容为1，表示添加pid作为扩展名，生成的core文件格式为core.xxxx；为0则表示生成的core文件同一命名为core。
+可通过以下命令修改此文件：
+echo &quot;1&quot; &gt; /proc/sys/kernel/core_uses_pid
+2）proc/sys/kernel/core_pattern可以控制core文件保存位置和文件名格式。
+可通过以下命令修改此文件：
+echo &quot;/corefile/core-%e-%p-%t&quot; &gt; core_pattern，可以将core文件统一生成到/corefile目录下，产生的文件名为core-命令名-pid-时间戳
+以下是参数列表:
+    %p - insert pid into filename 添加pid
+    %u - insert current uid into filename 添加当前uid
+    %g - insert current gid into filename 添加当前gid
+    %s - insert signal that caused the coredump into the filename 添加导致产生core的信号
+    %t - insert UNIX time that the coredump occurred into filename 添加core文件生成时的unix时间
+    %h - insert hostname where the coredump happened into filename 添加主机名
+    %e - insert coredumping executable name into filename 添加命令名
+(2)用gdb查看core文件
+　　发生core dump之后, 用gdb进行查看core文件的内容, 以定位文件中引发core dump的行.
+　　gdb [exec file] [core file]
+　　如:
+　　gdb ./test core
+　　或gdb ./a.out
+ 　　core-file core.xxxx
+　　gdb后, 用bt命令backtrace或where查看程序运行到哪里, 来定位core dump的文件-&gt;行.
+　　待调试的可执行文件，在编译的时候需要加-g，core文件才能正常显示出错信息
+　　1）gdb -core=core.xxxx
+　　file ./a.out
+　　bt
+　　2）gdb -c core.xxxx
+　　file ./a.out
+　　bt
+(3)用gdb实时观察某进程crash信息
+　　启动进程
+　　gdb -p PID
+　　c
+　　运行进程至crash
+　　gdb会显示crash信息
+　　bt</code></pre>
+<p>##11. 一个调试例子</p>
+<p>测试用的 C++ 程序：</p>
+<pre><code>#include &lt;stdio.h&gt;
+int add_range(int low, int high)
+&#123;
+    int i, sum;
+    for (i = low; i &lt;= high; i++)
+        sum = sum + i;
+    return sum;
+&#125;
+int main(void)
+&#123;
+    int result[100];
+    result[0] = add_range(1, 10);
+    result[1] = add_range(1, 100);
+    printf(&quot;result[0]=%d\nresult[1]=%d\n&quot;, result[0], result[1]);
+    return 0;
+&#125;</code></pre>
+<p>add_range 函数从 low 加到 high，在 main 函数中首先从 1 加到 10，把结果保存下来，然后从 1 加到 100，再把结果保存下来，最后打印的两个结果是：</p>
+<pre><code>result[0] = 55
+result[1] = 5105</code></pre>
+<p>第一个结果正确，第二个结果显然不正确，这是很常见的一类错误现象，这种情况不应该怀疑代码而应该怀疑数据，因为第一次和第二次运行的都是同一段代码，如果代码是错的，那为什么第一次的结果能对呢？然而第一次和第二次运行时相关的数据却有可能不同，错误的数据会导致错误的结果。</p>
+<p>在编译时要加上 -g 选项，生成的可执行文件才能用 gdb 进行源码级调试：</p>
+<pre><code>$ gcc -g main.c -o main
+$ gdb main</code></pre>
+<pre><code>-g 选项的作用是在可执行文件中加入源代码的信息，比如可执行文件中第几条机器指令对应源代码的第几行，但并不是把整个源文件嵌入到可执行文件中，所以在调试时必须保证 gdb 能找到源文件。gdb提供一个类似Shell的命令行环境，上面的(gdb)就是提示符，在这个提示符下输入help可以查看命令的类别：(gdb) help</code></pre>
+<p>也可以进一步查看某一类别中有哪些命令，例如：查看 files 类别下有哪些命令可用：(gdb) help files</p>
+<p>现在试试用 list 命令从第一行开始列出源代码：</p>
+<pre><code>(gdb) list 1
+1 #include &lt;stdio.h&gt;
+2 
+3 int add_range(int low, int high)
+4 &#123;
+5 int i, sum;
+6 for (i = low; i &lt;= high; i++)
+7 sum = sum + i;
+8 return sum;
+9 &#125;
+10</code></pre>
+<p>一次只列10行，如果要从第11行开始继续列源代码可以输入: (gdb) list</p>
+<p>也可以什么都不输直接敲回车，gdb提供了一个很方便的功能，在提示符下直接敲回车表示重复上一条命令。</p>
+<pre><code>(gdb) （直接回车）
+11 int main(void)
+12 &#123;
+13 int result[100];
+14 result[0] = add_range(1, 10);
+15 result[1] = add_range(1, 100);
+16 printf(&quot;result[0]=%d\nresult[1]=%d\n&quot;, result[0], result[1]);
+17 return 0;
+18
+
+gdb 的很多常用命令有简写形式，例如 list 命令可以写成 l，要列一个函数的源代码也可以用函数名做参数：
+
+(gdb) l add_range
+1 #include &lt;stdio.h&gt;
+2 
+3 int add_range(int low, int high)
+4 &#123;
+5 int i, sum;
+6 for (i = low; i &lt;= high; i++)
+7 sum = sum + i;
+8 return sum;
+9 &#125;
+10</code></pre>
+<p>现在退出gdb的环境：(gdb) quit</p>
+<p>我们做一个实验，把源代码改名或移到别处再用gdb调试，这样就列不出源代码了：</p>
+<pre><code>$ mv main.c mian.c
+$ gdb main
+...
+(gdb) l
+5 main.c: No such file or directory.
+in main.c
+
+可见 gcc 的 -g 选项并不是把源代码嵌入到可执行文件中的，在调试时也需要源文件。现在把源代码恢复原样，我们继续调试。首先用 start 命令开始执行程序：
+
+$ gdb main
+...
+(gdb) start
+Breakpoint 1 at 0x80483ad: file main.c, line 14.
+Starting program: /home/akaedu/main 
+main () at main.c:14
+14 result[0] = add_range(1, 10);
+(gdb)</code></pre>
+<p>gdb停在main函数中变量定义之后的第一条语句处等待我们发命令，gdb列出的这条语句是即将执行的下一条语句。<br>我们可以用next命令（简写为n）控制这些语句一条一条地执行：</p>
+<pre><code>(gdb) n
+15 result[1] = add_range(1, 100);
+(gdb) （直接回车）
+16 printf(&quot;result[0]=%d\nresult[1]=%d\n&quot;, result[0], result[1]);
+(gdb) （直接回车）
+result[0]=55
+result[1]=5105
+17 return 0;</code></pre>
+<p>用n命令依次执行两行赋值语句和一行打印语句，在执行打印语句时结果立刻打出来了，然后停在return语句之前等待我们发命令。</p>
+<p>虽然我们完全控制了程序的执行，但仍然看不出哪里错了，因为错误不在main函数中而在 add_range 函数中，现在用 start 命令重新来过，这次用 step 命令（简写为s）钻进 add_range 函数中去跟踪执行：</p>
+<pre><code>(gdb) start
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+
+Breakpoint 2 at 0x80483ad: file main.c, line 14.
+Starting program: /home/akaedu/main 
+main () at main.c:14
+14 result[0] = add_range(1, 10);
+(gdb) s
+add_range (low=1, high=10) at main.c:6
+6 for (i = low; i &lt;= high; i++)</code></pre>
+<p>这次停在了add_range函数中变量定义之后的第一条语句处。</p>
+<p>在函数中有几种查看状态的办法，backtrace命令（简写为bt）可以查看函数调用的栈帧：</p>
+<pre><code>(gdb) bt
+#0  add_range (low=1, high=10) at main.c:6
+#1  0x080483c1 in main () at main.c:14</code></pre>
+<p>可见当前的 add_range 函数是被 main 函数调用的，main 传进来的参数是 low=1，high=10。main 函数的栈帧编号为1，add_range 的栈帧编号为0。</p>
+<p>现在可以用 info 命令（简写为i）查看 add_range 函数局部变量的值：</p>
+<pre><code>(gdb) i locals
+i = 0
+sum = 0</code></pre>
+<p>如果想查看 main 函数当前局部变量的值也可以做到，先用 frame命令（简写为f）选择1号栈帧然后再查看局部变量：</p>
+<pre><code>(gdb) f 1
+#1  0x080483c1 in main () at main.c:14
+14 result[0] = add_range(1, 10);
+(gdb) i locals 
+result = &#123;0, 0, 0, 0, 0, 0, 134513196, 225011984, -1208685768, -1081160480, 
+...
+  -1208623680&#125;</code></pre>
+<p>注意到 result 数组中有很多元素具有杂乱无章的值，我们知道未经初始化的局部变量具有不确定的值。到目前为止一切正常。用 s 或 n 往下走几步，然后用 print 命令（简写为p）打印出变量 sum 的值：</p>
+<pre><code>(gdb) s
+7 sum = sum + i;
+(gdb) （直接回车）
+6 for (i = low; i &lt;= high; i++)
+(gdb) （直接回车）
+7 sum = sum + i;
+(gdb) （直接回车）
+6 for (i = low; i &lt;= high; i++)
+(gdb) p sum
+$1 = 3</code></pre>
+<p>第一次循环 i 是 1，第二次循环 i 是 2，加起来是3，没错。这里的 $1 表示 gdb 保存着这些中间结果，$后面的编号会自动增长，在命令中可以用$1、$2、$3等编号代替相应的值。</p>
+<p>由于我们本来就知道第一次调用的结果是正确的，再往下跟也没意义了，可以用 finish 命令让程序一直运行到从当前函数返回为止：</p>
+<pre><code>(gdb) finish
+Run till exit from #0  add_range (low=1, high=10) at main.c:6
+0x080483c1 in main () at main.c:14
+14 result[0] = add_range(1, 10);
+Value returned is $2 = 55</code></pre>
+<p>返回值是55，当前正准备执行赋值操作，用 s 命令赋值，然后查看 result 数组：</p>
+<pre><code>(gdb) s
+15 result[1] = add_range(1, 100);
+(gdb) p result
+$3 = &#123;55, 0, 0, 0, 0, 0, 134513196, 225011984, -1208685768, -1081160480, 
+...
+  -1208623680&#125;</code></pre>
+<p>第一个值 55 确实赋给了 result 数组的第 0 个元素。下面用 s 命令进入第二次 add_range 调用，进入之后首先查看参数和局部变量：</p>
+<pre><code>(gdb) s
+add_range (low=1, high=100) at main.c:6
+6 for (i = low; i &lt;= high; i++)
+(gdb) bt
+#0 add_range (low=1, high=100) at main.c:6
+#1 0x080483db in main () at main.c:15
+(gdb) i locals 
+i = 11
+sum = 55</code></pre>
+<pre><code>由于局部变量 i 和 sum 没初始化，所以具有不确定的值，又由于两次调用是挨着的，i 和 sum 正好取了上次调用时的值，&quot;验证局部变量存储空间的分配和释放&quot; 是一样的道理，只不过这次举的例子设法让局部变量 sum 在第一次调用时初值为0了。i 的初值不是0倒没关系，在 for 循环中会赋值为 0 的，但 sum 如果初值不是 0，累加得到的结果就错了。</code></pre>
+<p>好了，我们已经找到错误原因，可以退出 gdb 修改源代码了。如果我们不想浪费这次调试机会，可以在 gdb 中马上把 sum 的初值改为 0 继续运行，看看这一处改了之后还有没有别的 Bug：</p>
+<pre><code>(gdb) set var sum=0
+(gdb) finish
+Run till exit from #0  add_range (low=1, high=100) at main.c:6
+0x080483db in main () at main.c:15
+15 result[1] = add_range(1, 100);
+Value returned is $4 = 5050
+(gdb) n
+16 printf(&quot;result[0]=%d\nresult[1]=%d\n&quot;, result[0], result[1]);
+(gdb) （直接回车）
+result[0]=55
+result[1]=5050
+17 return 0;</code></pre>
+<p>这样结果就对了。修改变量的值除了用 set 命令之外也可以用 print 命令，因为 print 命令后面跟的是表达式，而我们知道赋值和函数调用也都是表达式，所以也可以用 print 命令修改变量的值或者调用函数：</p>
+<pre><code>(gdb) p result[2]=33
+$5 = 33
+(gdb) p printf(&quot;result[2]=%d\n&quot;, result[2])
+result[2]=33
+$6 = 13</code></pre>
+<h2 id="在不同语言中使用GDB"><a href="#在不同语言中使用GDB" class="headerlink" title="在不同语言中使用GDB"></a>在不同语言中使用GDB</h2><p>GDB支持下列语言：C, C++, Fortran, PASCAL, Java, Chill, assembly, 和<br>Modula-2。一般说来，GDB会根据你所调试的程序来确定当然的调试语言，比如：发<br>现文件名后缀为“.c”的，GDB会认为是C程序。文件名后缀为 “.C, .cc, .cp,<br>.cpp, .cxx, .c++”的，GDB会认为是C++程序。而后缀是“.f, .F”的，GDB会认为是<br>Fortran程序，还有，后缀为如果是“.s, .S”的会认为是汇编语言。</p>
+<p>也就是说，GDB会根据你所调试的程序的语言，来设置自己的语言环境，并让GDB的命<br>令跟着语言环境的改变而改变。比如一些GDB命令需要用到表达式或变量时，这些<br>表达式或变量的语法，完全是根据当前的语言环境而改变的。例如C/C++中对指针<br>的语法是*p，而在Modula-2中则是p^。并且，如果你当前的程序是由几种不同语言<br>一同编译成的，那到在调试过程中，GDB也能根据不同的语言自动地切换语言环境。<br>这种跟着语言环境而改变的功能，真是体贴开发人员的一种设计。</p>
+<p>下面是几个相关于GDB语言环境的命令：</p>
+<p>show language<br>查看当前的语言环境。如果GDB不能识为你所调试的编程语言，那么，C语言被认为是默认的环境。</p>
+<p>info frame<br>查看当前函数的程序语言。</p>
+<p>info source<br>查看当前文件的程序语言。</p>
+<p>如果GDB没有检测出当前的程序语言，那么你也可以手动设置当前的程序语言。使用set language命令即可做到。</p>
+<p>当set language命令后什么也不跟的话，你可以查看GDB所支持的语言种类：</p>
+<p>(gdb) set language<br>The currently understood settings are:</p>
+<p>local or auto Automatic setting based on source file<br>c Use the C language<br>c++ Use the C++ language<br>asm Use the Asm language<br>chill Use the Chill language<br>fortran Use the Fortran language<br>java Use the Java language<br>modula-2 Use the Modula-2 language<br>pascal Use the Pascal language<br>scheme Use the Scheme language<br>于是你可以在set language后跟上被列出来的程序语言名，来设置当前的语言环境</p>
+<hr>
+<ul>
+<li>转载连接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/freeking101">https://blog.csdn.net/freeking101</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/freeking101/article/details/54406982#t9">https://blog.csdn.net/freeking101/article/details/54406982#t9</a></li>
+</ul>
+<hr>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Augu5t</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/11/gdb-shi-yong-zong-jie/">https://github.com/Starry5ky/starry5ky.github.io/2021/10/11/gdb-shi-yong-zong-jie/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Augu5t</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/C-C/">
+                                    <span class="chip bg-color">C/C++</span>
+                                </a>
+                            
+                                <a href="/tags/GDB/">
+                                    <span class="chip bg-color">GDB</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/16/2021-zhong-guo-neng-yuan-wang-luo-an-quan-da-sai-wp-ji-he/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="2021中国能源网络安全大赛WP集合">
+                        
+                        <span class="card-title">2021中国能源网络安全大赛WP集合</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Augu5t
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
+                    <a href="/tags/WP/">
+                        <span class="chip bg-color">WP</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/09/gong-fang-shi-jie-pwn-xin-shou-qu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="攻防世界--PWN新手区">
+                        
+                        <span class="card-title">攻防世界--PWN新手区</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Augu5t
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
+                    <a href="/tags/PWN/">
+                        <span class="chip bg-color">PWN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Augu5t&#39;s Blog<br />'
+            + '文章作者: Augu5t<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Augu5t</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Starry5ky" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:admin@test.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=100000" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 100000" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/background/canvas-nest.js"></script>
+    
+
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var i=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){i&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+
+</html>
