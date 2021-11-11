@@ -549,8 +549,7 @@ Level 1 produces minimal information,enough for making backtraces in parts of th
 
 (gdb)后输入where，就会看到程序崩溃时堆栈信息
 （当前函数之前的所有已调用函数的列表（包括当前函数），gdb只显示最近几个）</code></pre>
-<p>##gdb 插件 Peda、Pwndbg、Gef 的安装</p>
-<p><a target="_blank" rel="noopener" href="http://www.peckerwood.top/post/peda_vs_pwndbg_gdb/">http://www.peckerwood.top/post/peda_vs_pwndbg_gdb/</a></p>
+<h2 id="gdb-插件-Peda、Pwndbg、Gef-的安装"><a href="#gdb-插件-Peda、Pwndbg、Gef-的安装" class="headerlink" title="gdb 插件 Peda、Pwndbg、Gef 的安装"></a>gdb 插件 Peda、Pwndbg、Gef 的安装</h2><p><a target="_blank" rel="noopener" href="http://www.peckerwood.top/post/peda_vs_pwndbg_gdb/">http://www.peckerwood.top/post/peda_vs_pwndbg_gdb/</a></p>
 <p>GDB的三个插件（gef gdbinit peda）超简单安装：<a target="_blank" rel="noopener" href="https://blog.csdn.net/aoxixi/article/details/90142736">https://blog.csdn.net/aoxixi/article/details/90142736</a></p>
 <p>gdb/pwndbg 常用命令简单整理：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhwer/p/12494317.html">https://www.cnblogs.com/zhwer/p/12494317.html</a></p>
 <p>kali 下 gdb 安装 peda|pwndbg|gef 走过的坑：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129837931">https://zhuanlan.zhihu.com/p/129837931</a></p>
@@ -573,14 +572,11 @@ $ echo source ~/.gdbinit-gef.py &gt;&gt; ~/.gdbinit</code></pre>
 source ~/peda/peda.py</code></pre>
 <p>把第二行添加到 gdbinit 的配置文件中去，把 pwndbg 的注释掉，即可切换为 peda</p>
 <p>选中 gef 的话，即添加一行：source ~/.gdbinit-gef.pysource ~/.gdbinit-gef.py</p>
-<p>#二、gdb 的 图形化GUI</p>
-<p>##gdb 的 图形化</p>
-<p>关键字：gdb前端 vim</p>
+<h1 id="二、gdb-的-图形化GUI"><a href="#二、gdb-的-图形化GUI" class="headerlink" title="二、gdb 的 图形化GUI"></a>二、gdb 的 图形化GUI</h1><h2 id="gdb-的-图形化"><a href="#gdb-的-图形化" class="headerlink" title="gdb 的 图形化"></a>gdb 的 图形化</h2><p>关键字：gdb前端 vim</p>
 <p>优秀的 gdb 图形化前端调试器：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34242331/article/details/85905052">https://blog.csdn.net/weixin_34242331/article/details/85905052</a></p>
 <p>vi/vim使用进阶: 在VIM中使用GDB调试 – 使用vimgdb：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/snowbook/p/5920637.html">https://www.cnblogs.com/snowbook/p/5920637.html</a></p>
 <p>gdb前端: VIM+Pyclewn 调试C/C++：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wucg/p/4095574.html">https://www.cnblogs.com/wucg/p/4095574.html</a></p>
-<p>##gdb 的 文本界面</p>
-<p>gdb Text User Interface(TUI) GDB 文本用户界面</p>
+<h2 id="gdb-的-文本界面"><a href="#gdb-的-文本界面" class="headerlink" title="gdb 的 文本界面"></a>gdb 的 文本界面</h2><p>gdb Text User Interface(TUI) GDB 文本用户界面</p>
 <pre><code>(1) 打开TUI模式
     方法一: 使用‘gdbtui’ or ‘gdb-tui’开始一个调试
             $ gdbtui -q sample
@@ -608,7 +604,7 @@ source ~/peda/peda.py</code></pre>
 另：
    ctrl+x再ctrl+a： 在classic和layout两种方式之间切换gdb的显示方式。
    (layout方式的gdb很有用，但是layout方式的gdb有bug，你会用到这种快速切换的)</code></pre>
-<p>##gdb帮助<br>gdb 提供一个类似 Shell 的命令行环境，下面的 (gdb) 就是提示符，在这个提示符下输入help可以查看命令的类别。<br>使用 help 类别（比如 help data）可以进一步查看 data 类别下的命令帮助。</p>
+<h2 id="gdb帮助"><a href="#gdb帮助" class="headerlink" title="gdb帮助"></a>gdb帮助</h2><p>gdb 提供一个类似 Shell 的命令行环境，下面的 (gdb) 就是提示符，在这个提示符下输入help可以查看命令的类别。<br>使用 help 类别（比如 help data）可以进一步查看 data 类别下的命令帮助。</p>
 <p>(gdb) help<br>下面列出了命令分类（对每个命令都可以使用：help 命令 获取帮助。例如：help info）:</p>
 <pre><code>aliases -- Aliases of other commands
 breakpoints -- Making program stop at certain points
@@ -630,8 +626,7 @@ Type &quot;apropos word&quot; to search for commands related to &quot;word&quot;
 Command name abbreviations are allowed if unambiguous.
 
 (gdb) help info</code></pre>
-<p>##使用 gdb 进行调试</p>
-<pre><code>1. 启动
+<h2 id="使用-gdb-进行调试"><a href="#使用-gdb-进行调试" class="headerlink" title="使用 gdb 进行调试"></a>使用 gdb 进行调试</h2><pre><code>1. 启动
     gdb 应用程序名
     gdb 应用程序名 core文件名
     gdb 应用程序名 pid             
@@ -721,9 +716,8 @@ Command name abbreviations are allowed if unambiguous.
 
 查看停止原因:
     info program</code></pre>
-<p>##用 gdb 查看、执行汇编代码<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hejinjing_tom_com/article/details/26704487">https://blog.csdn.net/hejinjing_tom_com/article/details/26704487</a><br>gdb调试汇编指令和查看寄存器：<a target="_blank" rel="noopener" href="https://www.linuxidc.com/linux/2014-10/108574.htm">https://www.linuxidc.com/linux/2014-10/108574.htm</a></p>
-<p>#三、gdb 常用操作</p>
-<pre><code>gdb -tui test     打开调试程序，界面分页，上面是代码，下面是命令。或者 gdbtui test
+<h2 id="用-gdb-查看、执行汇编代码"><a href="#用-gdb-查看、执行汇编代码" class="headerlink" title="用 gdb 查看、执行汇编代码"></a>用 gdb 查看、执行汇编代码</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hejinjing_tom_com/article/details/26704487">https://blog.csdn.net/hejinjing_tom_com/article/details/26704487</a><br>gdb调试汇编指令和查看寄存器：<a target="_blank" rel="noopener" href="https://www.linuxidc.com/linux/2014-10/108574.htm">https://www.linuxidc.com/linux/2014-10/108574.htm</a></p>
+<h1 id="三、gdb-常用操作"><a href="#三、gdb-常用操作" class="headerlink" title="三、gdb 常用操作"></a>三、gdb 常用操作</h1><pre><code>gdb -tui test     打开调试程序，界面分页，上面是代码，下面是命令。或者 gdbtui test
                   gdbtui 的开关快捷键： ctrl+x ctrl+a 或者 ctrl+x A
 
 file test         在运行gdb下打开test文件
@@ -1253,9 +1247,7 @@ gdb文件:
 修改远程目标的网络字节序格式:
     set endian big | little | auto
     show endian</code></pre>
-<p>#四、gdb使用总结</p>
-<p>##1. 基本命令</p>
-<pre><code>1）进入GDB　　#gdb test
+<h1 id="四、gdb使用总结"><a href="#四、gdb使用总结" class="headerlink" title="四、gdb使用总结"></a>四、gdb使用总结</h1><h2 id="1-基本命令"><a href="#1-基本命令" class="headerlink" title="1. 基本命令"></a>1. 基本命令</h2><pre><code>1）进入GDB　　#gdb test
 　　  test是要调试的程序，由gcc test.c -g -o test生成。进入后提示符变为(gdb) 。
 2）查看源码　　(gdb) l　　  
 　　  查看其他文件中定义的函数，在l后加上函数名即可定位到这个函数的定义及查看附近的其他源码。
@@ -1277,9 +1269,81 @@ gdb文件:
 9）程序继续运行　　(gdb) c
 　　使程序继续往下运行，直到再次遇到断点或程序结束；
 10）退出GDB　　(gdb) q</code></pre>
-<p>##2：断点调试<br>命令格式|例子|作用<br>–|:–:|–:<br>break + 设置断点的行号　　｜break n　　　　　｜在 n 行处设置断点<br>tbreak + 行号 或 函数名　　｜tbreak n/func　　｜设置临时断点，到达后被自动删除<br>break + filename:行号　　｜break main.c:10　｜用于在指定文件对应行设置断点<br>break + &lt;0x…&gt;　　｜break 0x3400a　　｜用于在内存某一位置处暂停<br>break + 行号 + if + 条件　　｜break 10 if i==3｜用于设置条件断点，在循环中使用非常方便<br>info breakpoints/watchpoints [n]｜info break　　｜n 表示断点号，查看断点/观察点的情况<br>clear + 要清除的断点行号　　｜clear 10　　　｜用于清除对应行的断点，要给出断点的行号，清除时GDB会给出提示<br>delete + 要清除的断点编号　　｜delete 3　　　｜用于清除断点和自动显示的表达式的命令，要给出断点的编号，清除时GDB不会给出任何提示<br>disable/enable + 断点编号　　｜disable 3　　｜让所设断点暂时失效/使能，如果要让多个编号处的断点失效/使能，可将编号之间用空格隔开<br>awatch/watch + 变量　　｜awatch/watch i　｜设置一个观察点，当变量被读出或写入时程序被暂停<br>rwatch + 变量　　　　　　｜rwatch i　　　　｜设置一个观察点，当变量被读出时，程序被暂停<br>catch　　　　　｜｜设置捕捉点来补捉程序运行时的一些事件。如：载入共享库（动态链接库）或是C++的异常<br>tcatch　　　　　｜｜只设置一次捕捉点，当程序停住以后，应点被自动删除</p>
-<p>##3. 数据命令</p>
-<pre><code>display + 表达式　　              显示表达式的值，每当程序运行到断点处都会显示表达式的值。display a　
+<h2 id="2：断点调试"><a href="#2：断点调试" class="headerlink" title="2：断点调试"></a>2：断点调试</h2><table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th align="center">例子</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>break + 设置断点的行号　　｜break n　　　　　｜在 n 行处设置断点</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>tbreak + 行号 或 函数名　　｜tbreak n/func　　｜设置临时断点，到达后被自动删除</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>break + filename:行号　　｜break main.c:10　｜用于在指定文件对应行设置断点</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>break + &lt;0x…&gt;　　｜break 0x3400a　　｜用于在内存某一位置处暂停</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>break + 行号 + if + 条件　　｜break 10 if i==3｜用于设置条件断点，在循环中使用非常方便</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>info breakpoints/watchpoints [n]｜info break　　｜n 表示断点号，查看断点/观察点的情况</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>clear + 要清除的断点行号　　｜clear 10　　　｜用于清除对应行的断点，要给出断点的行号，清除时GDB会给出提示</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>delete + 要清除的断点编号　　｜delete 3　　　｜用于清除断点和自动显示的表达式的命令，要给出断点的编号，清除时GDB不会给出任何提示</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>disable/enable + 断点编号　　｜disable 3　　｜让所设断点暂时失效/使能，如果要让多个编号处的断点失效/使能，可将编号之间用空格隔开</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>awatch/watch + 变量　　｜awatch/watch i　｜设置一个观察点，当变量被读出或写入时程序被暂停</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>rwatch + 变量　　　　　　｜rwatch i　　　　｜设置一个观察点，当变量被读出时，程序被暂停</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>catch　　　　　｜｜设置捕捉点来补捉程序运行时的一些事件。如：载入共享库（动态链接库）或是C++的异常</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>tcatch　　　　　｜｜只设置一次捕捉点，当程序停住以后，应点被自动删除</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<h2 id="3-数据命令"><a href="#3-数据命令" class="headerlink" title="3. 数据命令"></a>3. 数据命令</h2><pre><code>display + 表达式　　              显示表达式的值，每当程序运行到断点处都会显示表达式的值。display a　
 info display　　　　　　          显示当前所有要显示值的表达式的情况 
 delete + display的编号　　        删除一个要显示值的表达式，被删除的表达式将不被显示。delete 3　
 disable/enable + display的编号　　使一个要显示值的表达式暂时失效/使能。disable/enable 3　　
@@ -1289,7 +1353,7 @@ print(p) + 变量/表达式　          用于打印变量或表达式的值。�
 　　    使用print命令时，可以对变量按指定格式进行输出，其命令格式为print /变量名 + 格式
 　　    其中常用的变量格式：x：十六进制；d：十进制；u：无符号数；o：八进制；c：字符格式；f：浮点数。
 set + 变量 = 变量值　　         　改变程序中某个变量的值。set i = 3　</code></pre>
-<p>##调试运行环境相关命令</p>
+<p>##5. 调试运行环境相关命令</p>
 <pre><code>set args　　　　    设置运行参数。 set args arg1 arg2
 show args　　　     参看运行参数。 show args
 set width + 数目    设置GDB的行宽。set width 70
@@ -1302,8 +1366,7 @@ until + 行数　　   运行到函数某一行 。　u 3　
 continue(c)　　　　执行到下一个断点或程序结束 
 return &lt;返回值&gt;　　改变程序流程，直接结束当前函数，并将指定值返回。return 5　　
 call + 函数　　    在当前位置执行所要运行的函数。call func　</code></pre>
-<p>##5. 堆栈相关命令</p>
-<pre><code>backtrace/bt　　 用来打印栈帧指针，也可以在该命令后加上要打印的栈帧指针的个数。backtrace（或bt）查看各级函数调用及参数
+<h2 id="6-堆栈相关命令"><a href="#6-堆栈相关命令" class="headerlink" title="6. 堆栈相关命令"></a>6. 堆栈相关命令</h2><pre><code>backtrace/bt　　 用来打印栈帧指针，也可以在该命令后加上要打印的栈帧指针的个数。backtrace（或bt）查看各级函数调用及参数
                  查看程序执行到此时，都经过哪些函数/程序的调用，
                  程序“调用堆栈”是当前函数之前的所有已调用函数的列表（包括当前函数）。
                  每个函数及其变量都被分配了一个“帧”，最近调用的函数在 0 号帧中（“底部”帧）
@@ -1311,10 +1374,8 @@ frame　　        用于打印指定栈帧。例如：frame 1　　
 info reg　　     查看寄存器使用情况。例如：info reg　　
 info stack　　   查看堆栈使用情况。例如：info stack　　
 up/down　　　    跳到上一层/下一层函数。up/down　</code></pre>
-<p>##6. 跳转执行</p>
-<p>jump 指定下一条语句的运行点。可以是文件的行号，可以是file:line格式，可以是+num这种偏移量格式。表式着下一条运行语句从哪里开始。相当于改变了PC寄存器内容，堆栈内容并没有改变，跨函数跳转容易发生错误。 jump 指定下一条语句的运行点。可以是文件的行号，可以是file:line格式，可以是+num这种偏移量格式。表式着下一条运行语句从哪里开始。相当于改变了PC寄存器内容，堆栈内容并没有改变，跨函数跳转容易发生错误。</p>
-<p>##7. 信号命令</p>
-<pre><code>signal 　　signal SIGXXX 　　产生XXX信号，如SIGINT。一种速查Linux查询信号的方法：# kill -l
+<h2 id="7-跳转执行"><a href="#7-跳转执行" class="headerlink" title="7. 跳转执行"></a>7. 跳转执行</h2><p>jump 指定下一条语句的运行点。可以是文件的行号，可以是file:line格式，可以是+num这种偏移量格式。表式着下一条运行语句从哪里开始。相当于改变了PC寄存器内容，堆栈内容并没有改变，跨函数跳转容易发生错误。 jump 指定下一条语句的运行点。可以是文件的行号，可以是file:line格式，可以是+num这种偏移量格式。表式着下一条运行语句从哪里开始。相当于改变了PC寄存器内容，堆栈内容并没有改变，跨函数跳转容易发生错误。</p>
+<h2 id="8-信号命令"><a href="#8-信号命令" class="headerlink" title="8. 信号命令"></a>8. 信号命令</h2><pre><code>signal 　　signal SIGXXX 　　产生XXX信号，如SIGINT。一种速查Linux查询信号的方法：# kill -l
 handle 　　在GDB中定义一个信号处理。信号可以以SIG开头或不以SIG开头，可以用定义一个要处理信号的范围（如：SIGIO-SIGKILL，表示处理从SIGIO信号到SIGKILL的信号，其中包括SIGIO，SIGIOT，SIGKILL三个信号），也可以使用关键字all来标明要处理所有的信号。一旦被调试的程序接收到信号，运行程序马上会被GDB停住，以供调试。其可以是以下几种关键字的一个或多个：
 　　nostop/stop
 　　　　当被调试的程序收到信号时，GDB不会停住程序的运行，但会打出消息告诉你收到这种信号/GDB会停住你的程序  
@@ -1330,11 +1391,9 @@ handle 　　在GDB中定义一个信号处理。信号可以以SIG开头或不�
 　　info handle 
 　　　　可以查看哪些信号被GDB处理，并且可以看到缺省的处理方式
 　　single命令和shell的kill命令不同，系统的kill命令发信号给被调试程序时，是由GDB截获的，而single命令所发出一信号则是直接发给被调试程序的。</code></pre>
-<p>##8. 运行 Shell 命令</p>
-<p>在 gdb 环境中，你可以执行 UNIX 的 shell 的命令，使用 gdb 的 shell 命令来完成：shell <command string></p>
+<h2 id="9-运行-Shell-命令"><a href="#9-运行-Shell-命令" class="headerlink" title="9. 运行 Shell 命令"></a>9. 运行 Shell 命令</h2><p>在 gdb 环境中，你可以执行 UNIX 的 shell 的命令，使用 gdb 的 shell 命令来完成：shell <command string></p>
 <p>例如：<code>(gdb) shell ls             // 在 gdb 中运行 ls。</code></p>
-<p>##9. 更多程序运行选项和调试</p>
-<pre><code>1、程序运行参数。 
+<h2 id="10-更多程序运行选项和调试"><a href="#10-更多程序运行选项和调试" class="headerlink" title="10. 更多程序运行选项和调试"></a>10. 更多程序运行选项和调试</h2><pre><code>1、程序运行参数。 
 　　set args 可指定运行时参数。（如：set args 10 20 30 40 50） 
 　　show args 命令可以查看设置好的运行参数。 
 2、运行环境。 
@@ -1361,8 +1420,7 @@ handle 　　在GDB中定义一个信号处理。信号可以以SIG开头或不�
 　　linespec指定了断点设置在的源程序的行号。threadno指定了线程的ID，注意，这个ID是GDB分配的，可以通过“info threads”命令来查看正在运行程序中的线程信息。如果不指定thread 则表示断点设在所有线程上面。还可以为某线程指定断点条件。如： 
 　　(gdb) break frik.c:13 thread 28 if bartab &gt; lim 
 当你的程序被GDB停住时，所有的运行线程都会被停住。这方便查看运行程序的总体情况。而在你恢复程序运行时，所有的线程也会被恢复运行。</code></pre>
-<p>##10. 调试 core 文件</p>
-<pre><code>Core Dump：Core 的意思是内存，Dump 的意思是扔出来，堆出来。
+<h2 id="11-调试-core-文件"><a href="#11-调试-core-文件" class="headerlink" title="11. 调试 core 文件"></a>11. 调试 core 文件</h2><pre><code>Core Dump：Core 的意思是内存，Dump 的意思是扔出来，堆出来。
 
 开发和使用 Unix 程序时，有时程序莫名其妙的 down 了，却没有任何的提示 ( 有时候会提示 core dumped)，这时候可以查看一下有没有形如 core.进程号 的文件生成，这个文件便是操作系统把程序 down 掉时的内存内容扔出来生成的，它可以做为调试程序的参考</code></pre>
 <pre><code>(1)生成Core文件
@@ -1409,8 +1467,7 @@ echo &quot;/corefile/core-%e-%p-%t&quot; &gt; core_pattern，可以将core文件
 　　运行进程至crash
 　　gdb会显示crash信息
 　　bt</code></pre>
-<p>##11. 一个调试例子</p>
-<p>测试用的 C++ 程序：</p>
+<h2 id="12-一个调试例子"><a href="#12-一个调试例子" class="headerlink" title="12. 一个调试例子"></a>12. 一个调试例子</h2><p>测试用的 C++ 程序：</p>
 <pre><code>#include &lt;stdio.h&gt;
 int add_range(int low, int high)
 &#123;
@@ -1587,7 +1644,8 @@ $5 = 33
 (gdb) p printf(&quot;result[2]=%d\n&quot;, result[2])
 result[2]=33
 $6 = 13</code></pre>
-<h2 id="在不同语言中使用GDB"><a href="#在不同语言中使用GDB" class="headerlink" title="在不同语言中使用GDB"></a>在不同语言中使用GDB</h2><p>GDB支持下列语言：C, C++, Fortran, PASCAL, Java, Chill, assembly, 和<br>Modula-2。一般说来，GDB会根据你所调试的程序来确定当然的调试语言，比如：发<br>现文件名后缀为“.c”的，GDB会认为是C程序。文件名后缀为 “.C, .cc, .cp,<br>.cpp, .cxx, .c++”的，GDB会认为是C++程序。而后缀是“.f, .F”的，GDB会认为是<br>Fortran程序，还有，后缀为如果是“.s, .S”的会认为是汇编语言。</p>
+<h1 id="在不同语言中使用GDB"><a href="#在不同语言中使用GDB" class="headerlink" title="在不同语言中使用GDB"></a>在不同语言中使用GDB</h1><hr>
+<p>GDB支持下列语言：C, C++, Fortran, PASCAL, Java, Chill, assembly, 和<br>Modula-2。一般说来，GDB会根据你所调试的程序来确定当然的调试语言，比如：发<br>现文件名后缀为“.c”的，GDB会认为是C程序。文件名后缀为 “.C, .cc, .cp,<br>.cpp, .cxx, .c++”的，GDB会认为是C++程序。而后缀是“.f, .F”的，GDB会认为是<br>Fortran程序，还有，后缀为如果是“.s, .S”的会认为是汇编语言。</p>
 <p>也就是说，GDB会根据你所调试的程序的语言，来设置自己的语言环境，并让GDB的命<br>令跟着语言环境的改变而改变。比如一些GDB命令需要用到表达式或变量时，这些<br>表达式或变量的语法，完全是根据当前的语言环境而改变的。例如C/C++中对指针<br>的语法是*p，而在Modula-2中则是p^。并且，如果你当前的程序是由几种不同语言<br>一同编译成的，那到在调试过程中，GDB也能根据不同的语言自动地切换语言环境。<br>这种跟着语言环境而改变的功能，真是体贴开发人员的一种设计。</p>
 <p>下面是几个相关于GDB语言环境的命令：</p>
 <p>show language<br>查看当前的语言环境。如果GDB不能识为你所调试的编程语言，那么，C语言被认为是默认的环境。</p>

