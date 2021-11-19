@@ -480,7 +480,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    149
+                    204
                 </div>
                 
 
@@ -507,6 +507,8 @@
 <p>##压缩文件<br><em>ZIP Archive (zip)</em> : 文件头-&gt;<code>pk 504b 0304</code> 文件尾：<code>50 4B</code>　</p>
 <p>##伪加密<br>直接搜索属性头，进行修改就好。 一般情况下1403 后面的数据是00 00 就是没有加密的，<br>09 00 一般情况下伪加密是这个样的， 有一个00 00第二个零为奇数基本上就是伪加密，两个属性头只能有一个，如果两个都是，那可能就是真加密。</p>
 <p>##图片<br><em>PNG(png)</em>: 文件头：<code>89504E47</code>　 文件尾：<code>AE 42 60 82</code></p>
+<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><h2 id="phar"><a href="#phar" class="headerlink" title="phar"></a>phar</h2><h3 id="phar结构"><a href="#phar结构" class="headerlink" title="phar结构"></a>phar结构</h3><p>phar结构由四方面组成</p>
+<p>stub phar 文件标识，格式为 xxx<?php xxx; __HALT_COMPILER();?>；<br>manifest 压缩文件的属性等信息，以序列化存储；<br>contents 压缩文件的内容；<br>signature 签名，放在文件末尾；</p>
 <hr>
 <blockquote>
 <p>Tips:持续更新……</p>
