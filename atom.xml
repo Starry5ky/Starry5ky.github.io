@@ -6,7 +6,7 @@
   <link href="https://github.com/Starry5ky/starry5ky.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/Starry5ky/starry5ky.github.io/"/>
-  <updated>2021-11-16T16:09:38.996Z</updated>
+  <updated>2021-12-17T10:26:35.911Z</updated>
   <id>https://github.com/Starry5ky/starry5ky.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Log4j2 远程代码执行漏洞</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/12/11/log4j2-yuan-cheng-dai-ma-zhi-xing-lou-dong/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/12/11/log4j2-yuan-cheng-dai-ma-zhi-xing-lou-dong/</id>
+    <published>2021-12-11T05:08:36.000Z</published>
+    <updated>2021-12-17T10:26:35.911Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Apache-Log4j2-远程代码执行漏洞&quot;&gt;&lt;a href=&quot;#Apache-Log4j2-远程代码执行漏洞&quot; class=&quot;headerlink&quot; title=&quot;Apache Log4j2 远程代码执行漏洞&quot;&gt;&lt;/a&gt;Apache Log4j2</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞复现" scheme="https://github.com/Starry5ky/starry5ky.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+    <category term="RCE" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/RCE/"/>
+    
+    <category term="apache" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/apache/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>栈溢出(一)</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/11/30/zhan-yi-chu-yi/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2021/11/30/zhan-yi-chu-yi/</id>
+    <published>2021-11-29T16:00:00.000Z</published>
+    <updated>2021-11-30T10:13:39.901Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;what&quot;&gt;&lt;a href=&quot;#what&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="转载" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="汇编" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/%E6%B1%87%E7%BC%96/"/>
+    
+  </entry>
   
   <entry>
     <title>自建server酱同款推送+CS上线提醒</title>
@@ -69,16 +121,14 @@
     <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/23/ctf-xiao-zhi-shi/"/>
     <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/23/ctf-xiao-zhi-shi/</id>
     <published>2021-10-23T08:57:03.000Z</published>
-    <updated>2021-11-17T05:01:39.309Z</updated>
+    <updated>2021-12-08T09:25:55.550Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;#各类型文件头&lt;/p&gt;
-&lt;p&gt;##音频文件&lt;br&gt;&lt;em&gt;Wave (wav)&lt;/em&gt; : WAVE 57415645&lt;/p&gt;
-&lt;p&gt;##压缩文件&lt;br&gt;&lt;em&gt;ZIP Archive (zip)&lt;/em&gt; : 文件头-&amp;gt;&lt;code&gt;pk 504b</summary>
+    <summary type="html">&lt;h1 id=&quot;MISC&quot;&gt;&lt;a href=&quot;#MISC&quot; class=&quot;headerlink&quot; title=&quot;MISC&quot;&gt;&lt;/a&gt;MISC&lt;/h1&gt;&lt;h2 id=&quot;音频文件&quot;&gt;&lt;a href=&quot;#音频文件&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -201,16 +251,14 @@
     <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/09/gong-fang-shi-jie-pwn-xin-shou-qu/"/>
     <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/09/gong-fang-shi-jie-pwn-xin-shou-qu/</id>
     <published>2021-10-08T16:00:00.000Z</published>
-    <updated>2021-10-11T09:37:47.803Z</updated>
+    <updated>2021-11-30T10:32:00.790Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;#前置知识学习&lt;/p&gt;
-&lt;p&gt;##RELRO&lt;/p&gt;
-&lt;p&gt;GCC, GNU linker 以及 Glibc-dynamic linker 一起配合实现了一种叫做 relro 的技术: read only relocation。大概实现就是由 linker 指定</summary>
+    <summary type="html">&lt;h1 id=&quot;前置知识学习&quot;&gt;&lt;a href=&quot;#前置知识学习&quot; class=&quot;headerlink&quot; title=&quot;前置知识学习&quot;&gt;&lt;/a&gt;前置知识学习&lt;/h1&gt;&lt;h2 id=&quot;RELRO&quot;&gt;&lt;a href=&quot;#RELRO&quot; class=&quot;headerlink&quot;</summary>
         
       
     

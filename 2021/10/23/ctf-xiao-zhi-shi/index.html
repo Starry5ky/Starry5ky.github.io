@@ -480,14 +480,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    204
+                    856
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -502,13 +502,38 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>#各类型文件头</p>
-<p>##音频文件<br><em>Wave (wav)</em> : WAVE 57415645</p>
-<p>##压缩文件<br><em>ZIP Archive (zip)</em> : 文件头-&gt;<code>pk 504b 0304</code> 文件尾：<code>50 4B</code>　</p>
-<p>##伪加密<br>直接搜索属性头，进行修改就好。 一般情况下1403 后面的数据是00 00 就是没有加密的，<br>09 00 一般情况下伪加密是这个样的， 有一个00 00第二个零为奇数基本上就是伪加密，两个属性头只能有一个，如果两个都是，那可能就是真加密。</p>
-<p>##图片<br><em>PNG(png)</em>: 文件头：<code>89504E47</code>　 文件尾：<code>AE 42 60 82</code></p>
-<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><h2 id="phar"><a href="#phar" class="headerlink" title="phar"></a>phar</h2><h3 id="phar结构"><a href="#phar结构" class="headerlink" title="phar结构"></a>phar结构</h3><p>phar结构由四方面组成</p>
+                <h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="音频文件"><a href="#音频文件" class="headerlink" title="音频文件"></a>音频文件</h2><p><em>Wave (wav)</em> : WAVE 57415645</p>
+<h2 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h2><p><em>ZIP Archive (zip)</em> : 文件头-&gt;<code>pk 504b 0304</code> 文件尾：<code>50 4B</code>　</p>
+<h3 id="伪加密"><a href="#伪加密" class="headerlink" title="伪加密"></a>伪加密</h3><p>直接搜索属性头，进行修改就好。 一般情况下1403 后面的数据是00 00 就是没有加密的，<br>09 00 一般情况下伪加密是这个样的， 有一个00 00第二个零为奇数基本上就是伪加密，两个属性头只能有一个，如果两个都是，那可能就是真加密。</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p><em>PNG(png)</em>: 文件头：<code>89504E47</code>　 文件尾：<code>AE 42 60 82</code></p>
+<h4 id="CRC错误"><a href="#CRC错误" class="headerlink" title="CRC错误"></a>CRC错误</h4><ul>
+<li>49 48 44 52（即为ASCII码的IHDR）是文件头数据块的标示，该段格式是固定的<br>之后进入13位数据块，前8个字节00 00 05 56 00 00 03 00中：<br>前四个字节00 00 05 56（即为十进制的1366），代表该图片的宽，该段数据是由图片的实际宽决定的<br>后四个字节00 00 03 00（即为十进制的768），代表该图片的高，该段数据是由图片的实际高度决定的</li>
+</ul>
+<p>##</p>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><h3 id="phar"><a href="#phar" class="headerlink" title="phar"></a>phar</h3><h4 id="phar结构"><a href="#phar结构" class="headerlink" title="phar结构"></a>phar结构</h4><p>phar结构由四方面组成</p>
 <p>stub phar 文件标识，格式为 xxx<?php xxx; __HALT_COMPILER();?>；<br>manifest 压缩文件的属性等信息，以序列化存储；<br>contents 压缩文件的内容；<br>signature 签名，放在文件末尾；</p>
+<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><h2 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h2><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><p>EBP：基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的底部。</p>
+<p>ESP：栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶。</p>
+<h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h2><ul>
+<li>高级加密标准（英语：Advanced Encryption Standard，缩写：AES）<br>在密码学中又称Rijndael加密法，</li>
+<li>是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，</li>
+<li>已经被多方分析且广为全世界所使用</li>
+</ul>
+<h3 id="1-电码本模式（Electronic-Codebook-Book-ECB"><a href="#1-电码本模式（Electronic-Codebook-Book-ECB" class="headerlink" title="1.电码本模式（Electronic Codebook Book (ECB)"></a>1.电码本模式（Electronic Codebook Book (ECB)</h3><ul>
+<li>这种模式是将整个明文分成若干段相同的小段，然后对每一小段进行加密。<h3 id="2-密码分组链接模式（Cipher-Block-Chaining-CBC-）"><a href="#2-密码分组链接模式（Cipher-Block-Chaining-CBC-）" class="headerlink" title="2.密码分组链接模式（Cipher Block Chaining (CBC)）"></a>2.密码分组链接模式（Cipher Block Chaining (CBC)）</h3></li>
+<li>这种模式是先将明文切分成若干小段，然后每一小段与初始块或者上一段的密文段进行异或运算后，再与密钥进行加密。</li>
+<li>CBC模式自设定秘钥,需要设置偏移量</li>
+</ul>
+<h3 id="3-计算器模式（Counter-CTR-）"><a href="#3-计算器模式（Counter-CTR-）" class="headerlink" title="3.计算器模式（Counter (CTR)）"></a>3.计算器模式（Counter (CTR)）</h3><ul>
+<li>有一个自增的算子，这个算子用密钥加密之后的输出和明文异或的结果得到密文，相当于一次一密。这种加密方式简单快速，安全可靠，而且可以并行加密，但是在计算器不能维持很长的情况下，密钥只能使用一次</li>
+</ul>
+<h3 id="4-密码反馈模式（Cipher-FeedBack-CFB-）"><a href="#4-密码反馈模式（Cipher-FeedBack-CFB-）" class="headerlink" title="4.密码反馈模式（Cipher FeedBack (CFB)）"></a>4.密码反馈模式（Cipher FeedBack (CFB)）</h3><ul>
+<li>1、将一前段加密得到的密文再加密； </li>
+<li>2、将第1步加密得到的数据与当前段的明文异或。<h3 id="5-输出反馈模式（Output-FeedBack-OFB-）"><a href="#5-输出反馈模式（Output-FeedBack-OFB-）" class="headerlink" title="5.输出反馈模式（Output FeedBack (OFB)）"></a>5.输出反馈模式（Output FeedBack (OFB)）</h3></li>
+<li>先用块加密器生成密钥流(Keystream)，然后再将密钥流与明文流异或得到密文流。</li>
+<li>解密是先用块加密器生成密钥流，再将密钥流与密文流异或得到明文。</li>
+</ul>
+<p>OFB与CFB一样都非常适合对流数据的加密，OFB由于加密和解密都依赖与前一段数据，所以加密和解密都不能并行。</p>
 <hr>
 <blockquote>
 <p>Tips:持续更新……</p>
