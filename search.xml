@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>DevSecOps之IAST</title>
+      <link href="2022/01/18/devsecops-zhi-iast/"/>
+      <url>2022/01/18/devsecops-zhi-iast/</url>
+      
+        <content type="html"><![CDATA[<h1 id="IAST-工具初探"><a href="#IAST-工具初探" class="headerlink" title="IAST 工具初探"></a>IAST 工具初探</h1><p>IAST：交互式应用程序安全测试（Interactive Application Security Testing）</p><ul><li>近年来，IAST作为一种新的应用安全测试技术，受到广泛的关注，慢慢出现了一些iast开源项目，可以让更多的个人或者企业参与体验。<br>本文就目前网络中找到的几款iast工具进行部署测试，记录一些使用过程。</li></ul><h2 id="1、openrasp-iast"><a href="#1、openrasp-iast" class="headerlink" title="1、openrasp-iast"></a>1、openrasp-iast</h2><p>openrasp-iast 是一款灰盒扫描工具，目前开源的IAST扫描器，通过安装Agent和扫描器，能够结合应用内部hook点信息，针对获取到的url请求参数进行fuzz，从而检测到安全漏洞。<br>支持的编程语言：Java、PHP</p><p>官方文档：<a href="https://rasp.baidu.com/doc/install/iast.html">https://rasp.baidu.com/doc/install/iast.html</a></p><h2 id="2、火线-洞态IAST"><a href="#2、火线-洞态IAST" class="headerlink" title="2、火线~洞态IAST"></a>2、火线~洞态IAST</h2><p>洞台IAST提供SAAS平台，通过填写问卷注册登录控制台，下载Agent进行应用部署，然后正常访问应用，就可以触发漏洞检测，漏洞结果提供比较详细的HTTP数据包和污点流图，可用于快速验证和复现漏洞。<br>支持的编程语言：Java、C#、Net Core。<br>官方主页：<a href="https://hxsecurity.github.io/DongTaiDoc/#/">https://hxsecurity.github.io/DongTaiDoc/#/</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Log4j2 远程代码执行漏洞</title>
       <link href="2021/12/11/log4j2-yuan-cheng-dai-ma-zhi-xing-lou-dong/"/>
       <url>2021/12/11/log4j2-yuan-cheng-dai-ma-zhi-xing-lou-dong/</url>
