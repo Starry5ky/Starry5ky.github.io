@@ -6,7 +6,7 @@
   <link href="https://github.com/Starry5ky/starry5ky.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/Starry5ky/starry5ky.github.io/"/>
-  <updated>2022-01-18T08:26:56.884Z</updated>
+  <updated>2022-02-23T10:37:11.204Z</updated>
   <id>https://github.com/Starry5ky/starry5ky.github.io/</id>
   
   <author>
@@ -17,23 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DevSecOps之IAST</title>
-    <link href="https://github.com/Starry5ky/starry5ky.github.io/2022/01/18/devsecops-zhi-iast/"/>
-    <id>https://github.com/Starry5ky/starry5ky.github.io/2022/01/18/devsecops-zhi-iast/</id>
-    <published>2022-01-18T08:25:01.000Z</published>
-    <updated>2022-01-18T08:26:56.884Z</updated>
+    <title>APT之Bvp47美国方程式顶级后门技术细节</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2022/02/23/apt-zhi-bvp47-mei-guo-fang-cheng-shi-ding-ji-hou-men-ji-zhu-xi-jie/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2022/02/23/apt-zhi-bvp47-mei-guo-fang-cheng-shi-ding-ji-hou-men-ji-zhu-xi-jie/</id>
+    <published>2022-02-23T10:08:46.000Z</published>
+    <updated>2022-02-23T10:37:11.204Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;IAST-工具初探&quot;&gt;&lt;a href=&quot;#IAST-工具初探&quot; class=&quot;headerlink&quot; title=&quot;IAST 工具初探&quot;&gt;&lt;/a&gt;IAST 工具初探&lt;/h1&gt;&lt;p&gt;IAST：交互式应用程序安全测试（Interactive Application</summary>
+    <summary type="html">&lt;p&gt;#原文连接&lt;br&gt;&lt;a</summary>
         
       
     
     
     
+    
+    <category term="APT" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/APT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LINUX内核级Rootkit</title>
+    <link href="https://github.com/Starry5ky/starry5ky.github.io/2022/02/17/linux-nei-he-ji-rootkit/"/>
+    <id>https://github.com/Starry5ky/starry5ky.github.io/2022/02/17/linux-nei-he-ji-rootkit/</id>
+    <published>2022-02-17T07:34:56.000Z</published>
+    <updated>2022-02-18T02:24:50.861Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;RootKit&quot;&gt;&lt;a href=&quot;#RootKit&quot; class=&quot;headerlink&quot; title=&quot;RootKit&quot;&gt;&lt;/a&gt;RootKit&lt;/h1&gt;&lt;h2 id=&quot;1-1-Rootkit的定义&quot;&gt;&lt;a href=&quot;#1-1-Rootkit的定义&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="rootkit" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/rootkit/"/>
     
   </entry>
   
@@ -42,7 +67,7 @@
     <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/12/11/log4j2-yuan-cheng-dai-ma-zhi-xing-lou-dong/"/>
     <id>https://github.com/Starry5ky/starry5ky.github.io/2021/12/11/log4j2-yuan-cheng-dai-ma-zhi-xing-lou-dong/</id>
     <published>2021-12-11T11:08:36.000Z</published>
-    <updated>2022-02-16T08:28:10.863Z</updated>
+    <updated>2022-03-04T06:37:15.587Z</updated>
     
     
       
@@ -69,7 +94,7 @@
     <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/11/30/zhan-yi-chu-yi/"/>
     <id>https://github.com/Starry5ky/starry5ky.github.io/2021/11/30/zhan-yi-chu-yi/</id>
     <published>2021-11-29T16:00:00.000Z</published>
-    <updated>2021-11-30T10:13:39.901Z</updated>
+    <updated>2022-02-16T08:41:31.062Z</updated>
     
     
       
@@ -119,7 +144,7 @@
     <link href="https://github.com/Starry5ky/starry5ky.github.io/2021/10/25/bilibili1024ctf/"/>
     <id>https://github.com/Starry5ky/starry5ky.github.io/2021/10/25/bilibili1024ctf/</id>
     <published>2021-10-25T09:33:07.000Z</published>
-    <updated>2021-11-11T06:00:00.126Z</updated>
+    <updated>2022-02-16T08:39:16.303Z</updated>
     
     
       
@@ -133,7 +158,7 @@
     
     
     
-    <category term="-CTF" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/CTF/"/>
+    <category term="CTF" scheme="https://github.com/Starry5ky/starry5ky.github.io/tags/CTF/"/>
     
   </entry>
   
